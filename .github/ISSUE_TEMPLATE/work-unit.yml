@@ -1,0 +1,160 @@
+name: Work Unit
+description: Create a governed work unit for parallel conversations.
+title: "[<axis>/<subdomain>] <short topic>"
+labels:
+  - type:axis-task
+  - status:proposed
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for normal parallel work. A work unit is the smallest delivery unit: one issue, one branch, one PR.
+
+  - type: dropdown
+    id: axis
+    attributes:
+      label: axis
+      description: Select the primary planning axis.
+      options:
+        - platform-foundation
+        - runtime-orchestration
+        - memory-knowledge
+        - tooling-integration
+        - quality-evaluation
+        - cost-latency-ops
+        - release-program
+    validations:
+      required: true
+
+  - type: input
+    id: subdomain
+    attributes:
+      label: subdomain
+      description: Example: planner, evidence-lifecycle, policy-gate
+      placeholder: planner
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: goal
+      description: What outcome does this work unit produce?
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope_in
+    attributes:
+      label: scope_in
+      description: What is in scope?
+      placeholder: |
+        - Update .trae/specs/release-program/*
+        - Update docs/guides/git-workflow.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope_out
+    attributes:
+      label: scope_out
+      description: What is explicitly out of scope?
+    validations:
+      required: true
+
+  - type: textarea
+    id: touch_scope
+    attributes:
+      label: touch_scope
+      description: Files, contracts, modules, and data objects this unit can touch.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: role_owner
+    attributes:
+      label: role_owner
+      description: Current primary role for this work unit.
+      options:
+        - Product Owner
+        - Researcher
+        - Architect
+        - Spec Owner
+        - Implementer
+        - Reviewer
+        - Release Governor
+    validations:
+      required: true
+
+  - type: dropdown
+    id: next_role
+    attributes:
+      label: next_role
+      description: Which role should receive the next valid handoff?
+      options:
+        - Product Owner
+        - Researcher
+        - Architect
+        - Spec Owner
+        - Implementer
+        - Reviewer
+        - Release Governor
+    validations:
+      required: true
+
+  - type: dropdown
+    id: handoff_ready
+    attributes:
+      label: handoff_ready
+      description: Is this work unit already ready to hand off?
+      options:
+        - "no"
+        - "yes"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk
+    attributes:
+      label: risk
+      description: Risk level for this work unit.
+      options:
+        - risk:low
+        - risk:medium
+        - risk:high
+    validations:
+      required: true
+
+  - type: dropdown
+    id: gate_target
+    attributes:
+      label: gate_target
+      description: Primary gate this unit advances.
+      options:
+        - gate:G1
+        - gate:G2
+        - gate:G3
+        - gate:G4
+    validations:
+      required: true
+
+  - type: textarea
+    id: depends_on
+    attributes:
+      label: depends_on
+      description: List prerequisite issues/PRs (if any).
+      placeholder: "#123, #456"
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance_checks
+    attributes:
+      label: acceptance_checks
+      description: Checklist used to close this issue.
+      placeholder: |
+        - [ ] .trae/specs updated
+        - [ ] docs contract updated
+        - [ ] docs/INDEX.md entry updated (if needed)
+    validations:
+      required: true

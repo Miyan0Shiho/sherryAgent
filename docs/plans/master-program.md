@@ -2,7 +2,7 @@
 title: "Master Program"
 status: draft
 created: 2026-04-07
-updated: 2026-04-07
+updated: 2026-04-08
 related:
   - "./implementation-program.md"
   - "./story-gate-matrix.md"
@@ -204,3 +204,4 @@ related:
 - Story 穿透 gate 的验收矩阵
 - 风险台账格式
 - 从 planning-first 进入实现阶段的切换标准
+- GitHub 并行治理控制面（Issue/PR/CODEOWNERS/required checks）

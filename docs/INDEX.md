@@ -2,7 +2,7 @@
 title: "SherryAgent 文档索引"
 status: approved
 created: 2026-04-03
-updated: 2026-04-07
+updated: 2026-04-08
 ---
 
 # SherryAgent 文档索引
@@ -60,11 +60,27 @@ updated: 2026-04-07
 | 文档 | 描述 |
 |------|------|
 | [spec-authority.md](guides/spec-authority.md) | `.trae + docs` 双权威与冲突裁决 |
+| [git-workflow.md](guides/git-workflow.md) | 分支、Issue、PR、门禁的执行规范 |
+| [github-governance-controls.md](guides/github-governance-controls.md) | GitHub 上的并行治理控制面与配置步骤 |
+| [multi-conversation-development.md](guides/multi-conversation-development.md) | 多对话角色化协作模型、交接时机与升级路径 |
 | [design-principles.md](standard/design-principles.md) | 设计目标与原则 |
 | [naming-conventions.md](standard/naming-conventions.md) | 命名规范 |
 | [coding-standards.md](standard/coding-standards.md) | 编码标准 |
+| [role-handoff-contract.md](standard/role-handoff-contract.md) | 跨角色交接对象、字段与有效性规则 |
 | [story-template.md](standard/story-template.md) | Story 模板 |
 | [glossary.md](reference/glossary.md) | 术语表 |
+
+## 角色协作
+
+| 文档 | 描述 |
+|------|------|
+| [product-owner.md](roles/product-owner.md) | 目标、成功标准与范围边界角色手册 |
+| [researcher.md](roles/researcher.md) | 事实、证据与备选方案角色手册 |
+| [architect.md](roles/architect.md) | 模块边界、链路与状态机角色手册 |
+| [spec-owner.md](roles/spec-owner.md) | 双权威同步与规格冻结角色手册 |
+| [implementer.md](roles/implementer.md) | 按冻结 spec 执行的角色手册 |
+| [reviewer.md](roles/reviewer.md) | 缺陷、回归与证据缺口审查角色手册 |
+| [release-governor.md](roles/release-governor.md) | gate readiness 与放行治理角色手册 |
 
 ## 技术规范与参考
 

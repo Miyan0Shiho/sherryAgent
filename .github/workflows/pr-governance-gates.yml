@@ -1,0 +1,53 @@
+name: PR Governance Gates
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+      - labeled
+      - unlabeled
+      - ready_for_review
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  spec_docs_sync:
+    name: Spec-Docs Sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run check
+        run: python scripts/ci/pr_governance_checks.py --check spec-docs-sync
+
+  glossary_consistency:
+    name: Glossary Consistency
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run check
+        run: python scripts/ci/pr_governance_checks.py --check glossary-consistency
+
+  gate_eligibility:
+    name: Gate Eligibility (G1-G4)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run check
+        run: python scripts/ci/pr_governance_checks.py --check gate-eligibility
+
+  no_active_conflict_claim:
+    name: No Active Conflict Claim
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run check
+        run: python scripts/ci/pr_governance_checks.py --check no-active-conflict-claim

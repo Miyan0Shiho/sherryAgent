@@ -24,6 +24,8 @@
 - 风险台账、阻断升级机制和阶段性决策规则
 - Story 验收、质量回归、成本稳定性和运维准备的综合出口条件
 - 供未来真正排期与项目例会使用的项目程序定义
+- 面向 GitHub 的并行治理资产：Issue 模板、PR 模板、CODEOWNERS、门禁检查工作流与脚本
+- 面向多对话协作的角色控制面：角色手册、prompt 模板、交接契约
 
 ## Dependencies
 ### Upstream
@@ -56,6 +58,9 @@
 - 本主线的工作重点不是“写更多计划”，而是防止各主线独立推进后失去统一交付节奏
 - 任何阶段推进都必须有明确出口条件，不能以“文档已经很多了”替代完成定义
 - Risk ledger 必须是活文档，而不是一次性罗列问题
+- 多对话并行必须采用 `Issue -> Branch -> PR` 的单元化模式，且一个 Work Unit 只能对应一个活跃 PR
+- `contract-impacting` 变更必须触发双权威审查（spec authority + docs authority）
+- 多对话角色协作必须显式记录 `role_owner -> next_role -> handoff_ready`
 
 ## Blocking Conditions
 - 7 条主线之间仍然存在隐性依赖，无法形成清晰的交付顺序
@@ -67,6 +72,8 @@
 - 7 条主线具备清晰依赖、阶段顺序和阶段门禁
 - Story、评测、成本、安全、运维要求都被纳入统一交付程序
 - 后续可以直接在本主线基础上扩展 master program、里程碑图和周度执行节奏
+- GitHub 治理控制面可运行，且 4 个 required checks 可用于保护 `main`
+- 角色文档包可直接驱动不同对话承担不同职责，且不与双权威冲突
 
 ## Acceptance Criteria
 - 阶段、依赖、门禁和风险管理都可直接指导后续实施

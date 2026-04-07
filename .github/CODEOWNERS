@@ -1,0 +1,10 @@
+# Global fallback owner
+* @REPLACE_WITH_GITHUB_USERNAME
+
+# Dual authority ownership split
+/.trae/specs/ @REPLACE_SPEC_AUTHORITY
+/docs/ @REPLACE_DOCS_AUTHORITY
+
+# Governance assets
+/.github/ @REPLACE_RELEASE_PROGRAM_AUTHORITY
+/scripts/ci/ @REPLACE_RELEASE_PROGRAM_AUTHORITY

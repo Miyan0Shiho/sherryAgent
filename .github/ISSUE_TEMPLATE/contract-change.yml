@@ -1,0 +1,143 @@
+name: Contract Change
+description: Propose a change that impacts system contract, terminology, safety rules, or authority boundaries.
+title: "[contract/<axis>/<subdomain>] <short topic>"
+labels:
+  - type:contract-change
+  - status:proposed
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when changes impact dual authority (`.trae/specs` + `docs/*`) or any core contract.
+
+  - type: dropdown
+    id: axis
+    attributes:
+      label: axis
+      options:
+        - platform-foundation
+        - runtime-orchestration
+        - memory-knowledge
+        - tooling-integration
+        - quality-evaluation
+        - cost-latency-ops
+        - release-program
+    validations:
+      required: true
+
+  - type: input
+    id: subdomain
+    attributes:
+      label: subdomain
+      placeholder: core-data-contracts
+    validations:
+      required: true
+
+  - type: textarea
+    id: contract_impact
+    attributes:
+      label: contract_impact
+      description: Which contracts, state machines, or governance rules change?
+    validations:
+      required: true
+
+  - type: textarea
+    id: spec_update
+    attributes:
+      label: spec_update
+      description: What must be updated in `.trae/specs/*`?
+    validations:
+      required: true
+
+  - type: textarea
+    id: docs_update
+    attributes:
+      label: docs_update
+      description: What must be updated in `docs/*`?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: role_owner
+    attributes:
+      label: role_owner
+      options:
+        - Product Owner
+        - Researcher
+        - Architect
+        - Spec Owner
+        - Implementer
+        - Reviewer
+        - Release Governor
+    validations:
+      required: true
+
+  - type: dropdown
+    id: next_role
+    attributes:
+      label: next_role
+      options:
+        - Product Owner
+        - Researcher
+        - Architect
+        - Spec Owner
+        - Implementer
+        - Reviewer
+        - Release Governor
+    validations:
+      required: true
+
+  - type: dropdown
+    id: handoff_ready
+    attributes:
+      label: handoff_ready
+      options:
+        - "no"
+        - "yes"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: conflict_type
+    attributes:
+      label: conflict_type
+      description: If this resolves an active conflict, choose the type.
+      options:
+        - none
+        - A (roadmap/task/acceptance)
+        - B (contract/safety/terminology)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk
+    attributes:
+      label: risk
+      options:
+        - risk:medium
+        - risk:high
+    validations:
+      required: true
+
+  - type: dropdown
+    id: gate_target
+    attributes:
+      label: gate_target
+      options:
+        - gate:G1
+        - gate:G2
+        - gate:G3
+        - gate:G4
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_checks
+    attributes:
+      label: acceptance_checks
+      placeholder: |
+        - [ ] `.trae/specs` and `docs/*` both updated
+        - [ ] conflict basis documented
+        - [ ] decision linked
+    validations:
+      required: true

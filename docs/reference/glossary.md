@@ -2,7 +2,7 @@
 title: "术语表"
 status: draft
 created: 2026-04-07
-updated: 2026-04-07
+updated: 2026-04-08
 related:
   - "../architecture/system-blueprint.md"
   - "../specs/core-data-contracts.md"
@@ -32,10 +32,13 @@ related:
 - **Story**：验收与演示套件，不是顶层项目规划主轴。
 - **Capability Benchmark**：能力基准评测，用于比较 baseline 和 current。
 - **Regression Suite**：固定失败样本、事故样本和边界样本的回归集合。
+- **G1 Foundation Gate**：`platform-foundation` 与 `runtime-orchestration` 的冻结门禁。
+- **G2 Capability Gate**：`memory-knowledge` 与 `tooling-integration` 的能力层门禁。
+- **G3 Governance Gate**：`quality-evaluation` 与 `cost-latency-ops` 的治理层门禁。
+- **G4 Release Readiness Gate**：`release-program` 与 Story 验收汇总后的发布准备门禁。
 
 ## 历史术语
 
 - **MVP-1..5**：已归档的旧阶段口径，不再作为执行主轴。
 - **Phoenix / Egg / Chick**：已归档的比喻式路线图术语，不再作为当前计划口径。
 - **Fork / Lane / Teammate**：历史实现和研究中出现的执行策略术语，当前不是一级模块边界。
-

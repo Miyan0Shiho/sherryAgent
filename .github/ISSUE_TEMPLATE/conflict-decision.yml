@@ -1,0 +1,85 @@
+name: Conflict Decision
+description: Record and resolve a cross-PR or cross-contract conflict.
+title: "[conflict/<axis>/<subdomain>] <short topic>"
+labels:
+  - type:conflict-decision
+  - status:proposed
+body:
+  - type: dropdown
+    id: conflict_type
+    attributes:
+      label: conflict_type
+      description: Follow docs/guides/spec-authority.md
+      options:
+        - A (roadmap/task/acceptance)
+        - B (contract/safety/terminology)
+    validations:
+      required: true
+
+  - type: input
+    id: axis
+    attributes:
+      label: axis
+      placeholder: runtime-orchestration
+    validations:
+      required: true
+
+  - type: input
+    id: subdomain
+    attributes:
+      label: subdomain
+      placeholder: planner
+    validations:
+      required: true
+
+  - type: textarea
+    id: conflicting_prs
+    attributes:
+      label: conflicting_prs
+      description: List PR links/IDs in conflict.
+      placeholder: |
+        - #101
+        - #105
+    validations:
+      required: true
+
+  - type: textarea
+    id: facts
+    attributes:
+      label: facts
+      description: Objective conflict facts and evidence.
+    validations:
+      required: true
+
+  - type: textarea
+    id: role_conflict
+    attributes:
+      label: role_conflict
+      description: Describe whether the conflict is ownership drift, role overlap, or a real contract conflict.
+    validations:
+      required: true
+
+  - type: textarea
+    id: decision_basis
+    attributes:
+      label: decision_basis
+      description: Explain why this decision is correct and which authority source wins.
+    validations:
+      required: true
+
+  - type: textarea
+    id: required_sync_actions
+    attributes:
+      label: required_sync_actions
+      description: Follow-up updates required in specs/docs/PRs.
+    validations:
+      required: true
+
+  - type: input
+    id: deadline
+    attributes:
+      label: deadline
+      description: Resolution SLA deadline (e.g., 2026-04-08)
+      placeholder: 2026-04-08
+    validations:
+      required: true
