@@ -29,6 +29,7 @@ updated: 2026-04-07
 |------|------|
 | [implementation-program.md](plans/implementation-program.md) | 统一实现总计划：主线、阶段、门禁、交付节奏 |
 | [master-program.md](plans/master-program.md) | 总控项目程序：依赖图、阶段图、并行窗口、门禁矩阵 |
+| [story-gate-matrix.md](plans/story-gate-matrix.md) | Story 验收如何穿透 7 条主线 gate 的总表 |
 
 ### `.trae/specs` 主线计划
 

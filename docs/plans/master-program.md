@@ -5,6 +5,7 @@ created: 2026-04-07
 updated: 2026-04-07
 related:
   - "./implementation-program.md"
+  - "./story-gate-matrix.md"
   - "../architecture/system-blueprint.md"
   - "../architecture/core-operational-loops.md"
 ---
@@ -200,5 +201,6 @@ related:
 - 主线依赖图
 - 阶段图与并行窗口
 - 门禁矩阵
+- Story 穿透 gate 的验收矩阵
 - 风险台账格式
 - 从 planning-first 进入实现阶段的切换标准
