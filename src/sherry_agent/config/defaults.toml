@@ -1,0 +1,22 @@
+# SherryAgent 默认配置
+
+[agent]
+model = "claude-sonnet-4-20250514"
+max_tokens = 8192
+token_budget = 200_000
+max_tool_rounds = 20
+
+[heartbeat]
+base_interval_seconds = 60
+low_power_interval_seconds = 300
+idle_threshold_cycles = 5
+
+[persistence]
+tasks_dir = "tasks"
+enable_snapshot = true
+snapshot_interval_minutes = 5
+
+[permissions]
+auto_mode = false
+audit_log = true
+alert_on_high_risk = true

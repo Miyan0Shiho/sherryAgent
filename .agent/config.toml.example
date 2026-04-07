@@ -1,0 +1,53 @@
+# SherryAgent 权限配置示例
+
+[permissions]
+# 自动模式：后台模式默认开启，CLI模式默认关闭
+auto_mode = false
+# 审计日志：记录所有权限决策
+audit_log = true
+# 高风险操作告警
+alert_on_high_risk = true
+
+[permissions.deny_list]
+# 禁止执行的命令
+commands = [
+    "rm -rf /",
+    "rm -rf /*",
+    "rm -rf ~",
+    "rm -rf ~/*",
+    "DROP TABLE",
+    "DELETE FROM",
+    "TRUNCATE",
+    "sudo *",
+    "su *"
+]
+# 禁止访问的路径
+paths = [
+    "/etc/passwd",
+    "/etc/shadow",
+    "~/.ssh",
+    "~/.aws",
+    "~/.gnupg",
+    "/sys/*",
+    "/proc/*"
+]
+
+[permissions.allow_list]
+# 允许执行的命令
+commands = [
+    "git *",
+    "npm *",
+    "python3 *",
+    "pip *",
+    "ls *",
+    "cat *",
+    "mkdir *",
+    "cp *",
+    "mv *"
+]
+# 允许访问的路径
+paths = [
+    "~/projects/*",
+    "/tmp/*",
+    "./*"
+]

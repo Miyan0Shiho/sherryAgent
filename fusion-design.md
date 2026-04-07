@@ -1081,10 +1081,10 @@ class PermissionResult:
 ### 4.3 项目结构
 
 ```
-fusion-agent/
+sherryagent/
 ├── pyproject.toml
 ├── src/
-│   └── fusion_agent/
+│   └── sherry_agent/
 │       ├── __init__.py
 │       ├── cli/                    # 交互层
 │       │   ├── app.py              # Textual TUI应用
@@ -1143,7 +1143,7 @@ fusion-agent/
 **核心代码示例**：
 
 ```python
-# src/fusion_agent/execution/loop.py
+# src/sherry_agent/execution/loop.py
 
 async def run_agent_loop(
     user_message: str,
@@ -1350,7 +1350,7 @@ session_serial = true
 
 [memory]
 short_term_compression_threshold = 0.8
-long_term_db_path = "~/.fusion-agent/memory.db"
+long_term_db_path = "~/.sherryagent/memory.db"
 embedding_model = "all-MiniLM-L6-v2"
 
 [permissions]
