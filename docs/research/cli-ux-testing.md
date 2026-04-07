@@ -79,12 +79,12 @@ journey
 
 1. **P0 - API Key 配置引导缺失**
    - 现象：首次启动时缺少 API Key，提示信息不够友好
-   - 代码位置：[tui.py:18-23](../../src/sherry_agent/cli/tui.py#L18-L23)
+   - 能力锚点（历史实现）：[IL-CLI-TUI](../legacy/implementation-snapshot.md#il-cli-tui)
    - 影响：用户无法理解如何配置，可能放弃使用
 
 2. **P1 - 缺少交互式教程**
    - 现象：首次启动仅显示简单欢迎信息
-   - 代码位置：[tui.py:105-109](../../src/sherry_agent/cli/tui.py#L105-L109)
+   - 能力锚点（历史实现）：[IL-CLI-TUI](../legacy/implementation-snapshot.md#il-cli-tui)
    - 影响：新用户学习曲线陡峭
 
 ### 场景 2：日常任务执行
@@ -113,17 +113,17 @@ journey
 
 1. **P1 - 缺少多行输入支持**
    - 现象：输入框仅支持单行，无法输入复杂任务描述
-   - 代码位置：[widgets/input.py](../../src/sherry_agent/cli/widgets/input.py)
+   - 能力锚点（历史实现）：[IL-CLI-TUI](../legacy/implementation-snapshot.md#il-cli-tui)
    - 影响：复杂任务无法通过 CLI 执行
 
 2. **P1 - 缺少进度反馈**
    - 现象：长时间任务仅显示"处理中..."
-   - 代码位置：[tui.py:118](../../src/sherry_agent/cli/tui.py#L118)
+   - 能力锚点（历史实现）：[IL-CLI-TUI](../legacy/implementation-snapshot.md#il-cli-tui)
    - 影响：用户无法判断任务是否卡死
 
 3. **P1 - 缺少命令历史**
    - 现象：无法使用上下箭头浏览历史输入
-   - 代码位置：[widgets/input.py](../../src/sherry_agent/cli/widgets/input.py)
+   - 能力锚点（历史实现）：[IL-CLI-TUI](../legacy/implementation-snapshot.md#il-cli-tui)
    - 影响：重复输入成本高，效率低
 
 ### 场景 3：后台模式使用
@@ -150,12 +150,12 @@ journey
 
 1. **P0 - 跨平台兼容性问题**
    - 现象：后台模式使用 `os.fork()`，仅 Unix 支持
-   - 代码位置：[main.py:28-68](../../src/sherry_agent/cli/main.py#L28-L68)
+   - 能力锚点（历史实现）：[IL-CLI-CommandRouter](../legacy/implementation-snapshot.md#il-cli-commandrouter)
    - 影响：Windows 用户无法使用后台模式
 
 2. **P0 - 缺少进程管理命令**
    - 现象：无 stop/restart/logs 命令
-   - 代码位置：[main.py](../../src/sherry_agent/cli/main.py)
+   - 能力锚点（历史实现）：[IL-CLI-CommandRouter](../legacy/implementation-snapshot.md#il-cli-commandrouter)
    - 影响：后台进程难以管理
 
 ### 场景 4：插件管理
@@ -182,7 +182,7 @@ journey
 
 1. **P2 - 缺少插件安装命令**
    - 现象：无 install/uninstall 命令
-   - 代码位置：[main.py:107-165](../../src/sherry_agent/cli/main.py#L107-L165)
+   - 能力锚点（历史实现）：[IL-CLI-CommandRouter](../legacy/implementation-snapshot.md#il-cli-commandrouter)
    - 影响：插件安装需手动操作
 
 ### 场景 5：错误处理与恢复
@@ -209,12 +209,12 @@ journey
 
 1. **P0 - 错误信息不友好**
    - 现象：技术错误直接暴露给用户
-   - 代码位置：[tui.py:145-147](../../src/sherry_agent/cli/tui.py#L145-L147)
+   - 能力锚点（历史实现）：[IL-CLI-TUI](../legacy/implementation-snapshot.md#il-cli-tui)
    - 影响：用户无法理解和解决问题
 
 2. **P1 - 缺少错误恢复机制**
    - 现象：错误发生后无法恢复
-   - 代码位置：[tui.py:125-149](../../src/sherry_agent/cli/tui.py#L125-L149)
+   - 能力锚点（历史实现）：[IL-CLI-TUI](../legacy/implementation-snapshot.md#il-cli-tui)
    - 影响：需重启应用，体验差
 
 ### 场景 6：配置管理
@@ -241,7 +241,7 @@ journey
 
 1. **P0 - 缺少配置文件支持**
    - 现象：所有参数需命令行指定，无法保存偏好
-   - 代码位置：[main.py:71-88](../../src/sherry_agent/cli/main.py#L71-L88)
+   - 能力锚点（历史实现）：[IL-CLI-CommandRouter](../legacy/implementation-snapshot.md#il-cli-commandrouter)
    - 影响：每次启动需重新配置，效率低
 
 ## 问题汇总与优先级

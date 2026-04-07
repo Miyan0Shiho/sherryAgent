@@ -745,10 +745,10 @@ ORDER BY avg_duration_ms DESC;
 
 | 模块 | 功能 | 实现位置 | 状态 |
 |------|------|----------|------|
-| 资源监控 | CPU、内存监控 | `infrastructure/monitoring.py` | ✅ 已实现 |
-| 阈值告警 | 内存阈值告警 | `infrastructure/monitoring.py` | ✅ 已实现 |
-| Token 追踪 | Token 使用统计 | `execution/agent_loop.py` | ✅ 已实现 |
-| 执行日志 | Benchmark 日志 | `tests/benchmark/logger.py` | ✅ 已实现 |
+| 资源监控 | CPU、内存监控 | `implementation-snapshot.md#ifl-monitoring` | 历史实现（已删除） |
+| 阈值告警 | 内存阈值告警 | `implementation-snapshot.md#ifl-monitoring` | 历史实现（已删除） |
+| Token 追踪 | Token 使用统计 | `implementation-snapshot.md#el-agentloop` | 历史实现（已删除） |
+| 执行日志 | Benchmark 日志 | `implementation-snapshot.md#ev-benchmarkharness` | 历史实现（已删除） |
 | 全局日志配置 | structlog 配置 | - | ❌ 未实现 |
 | Trace ID | 分布式追踪 | - | ❌ 未实现 |
 | Span 记录 | 调用链追踪 | - | ❌ 未实现 |

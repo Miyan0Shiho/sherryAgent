@@ -15,8 +15,8 @@ SherryAgent 的 CLI 功能目前仅通过集成测试和代码测试验证，缺
 
 ## 评估范围
 
-- 命令行参数解析（[main.py](../../src/sherry_agent/cli/main.py)）
-- TUI 界面功能（[tui.py](../../src/sherry_agent/cli/tui.py)）
+- 命令行参数解析（能力锚点：[IL-CLI-CommandRouter](../legacy/implementation-snapshot.md#il-cli-commandrouter)）
+- TUI 界面功能（能力锚点：[IL-CLI-TUI](../legacy/implementation-snapshot.md#il-cli-tui)）
 - 交互体验
 - 错误处理与提示
 - 测试覆盖度

@@ -227,3 +227,5 @@ SDD 工作流与现有的需求评审流程互补：
 - 改善代码质量和可维护性
 - 增强团队协作和沟通
 - 建立可追溯的开发历史
+
+> **SherryAgent 约束**：本仓库的“执行权威”以 `.trae/specs` 为准，`docs/` 负责系统契约与叙事口径；OpenSpec 作为文档写法参考，不作为权威规范来源（见 [spec-authority.md](spec-authority.md)）。

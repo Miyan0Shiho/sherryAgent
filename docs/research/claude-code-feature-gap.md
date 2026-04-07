@@ -80,9 +80,9 @@ while (shouldContinue) {
 }
 ```
 
-**SherryAgent 实现：**
+**SherryAgent（历史实现蒸馏）：**
 
-[agent_loop.py:76-302](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/execution/agent_loop.py#L76-L302) 实现了完整的 TAOR 循环：
+见 [EL-AgentLoop](../legacy/implementation-snapshot.md#el-agentloop)（docs-only 后不再引用源码行号）：
 
 ```python
 async def agent_loop(...):
@@ -145,9 +145,9 @@ async def agent_loop(...):
 | Session Memory Compact | 10K-40K tokens | 提取关键信息到持久会话记忆 | 中等 |
 | Reactive Compact | API 返回错误 | 截断最旧的消息组 | 低 |
 
-**SherryAgent 实现：**
+**SherryAgent（历史实现蒸馏）：**
 
-[short_term.py:65-224](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/memory/short_term.py#L65-L224) 实现了四种压缩策略：
+见 [ML-ShortTerm](../legacy/implementation-snapshot.md#ml-shortterm)：
 
 ```python
 def compact(self, level: str = "auto") -> None:
@@ -217,9 +217,9 @@ def compact(self, level: str = "auto") -> None:
 允许/拒绝/需确认
 ```
 
-**SherryAgent 实现：**
+**SherryAgent（历史实现蒸馏）：**
 
-[checker.py:14-130](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/infrastructure/security/checker.py#L14-L130) 实现了五层权限检查：
+见 [IFL-Permissions](../legacy/implementation-snapshot.md#ifl-permissions)：
 
 ```python
 class ComprehensivePermissionChecker(PermissionChecker):
@@ -275,9 +275,9 @@ class ComprehensivePermissionChecker(PermissionChecker):
 | 第二层 | Coordinator Mode | 环境变量触发 | 系统提示重写为编排角色 |
 | 第三层 | Team Mode | TeamCreateTool 创建 | 命名团队、文件持久化 |
 
-**SherryAgent 实现：**
+**SherryAgent（历史实现蒸馏）：**
 
-[forker.py:44-101](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/orchestration/forker.py#L44-L101) 实现了 Sub-Agent：
+见 [EL-Fork](../legacy/implementation-snapshot.md#el-fork)（Sub-Agent/Fork 雏形）：
 
 ```python
 class AgentForker:
@@ -294,7 +294,7 @@ class AgentForker:
         return SubAgent(system_prompt, tools, permissions)
 ```
 
-[teams.py:11-132](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/orchestration/teams.py#L11-L132) 实现了 Team Mode：
+见 [OL-Teams](../legacy/implementation-snapshot.md#ol-teams)（Team Mode 雏形）：
 
 ```python
 class TeamLead:
@@ -353,9 +353,9 @@ class Teammate:
 - HTTP Webhook
 - JavaScript 函数
 
-**SherryAgent 实现：**
+**SherryAgent（历史实现蒸馏）：**
 
-[hooks.py:36-80](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/plugins/hooks.py#L36-L80) 实现了基础 Hook 系统：
+见 [IFL-Skills-Plugins](../legacy/implementation-snapshot.md#ifl-skills-plugins)（插件/skill 能力雏形）：
 
 ```python
 class PluginHooks:
@@ -429,9 +429,9 @@ class PluginHooks:
     + [子任务描述] + [子任务工具结果]
 ```
 
-**SherryAgent 实现：**
+**SherryAgent（历史实现蒸馏）：**
 
-[forker.py:47-71](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/orchestration/forker.py#L47-L71) 实现了上下文继承：
+见 [EL-Fork](../legacy/implementation-snapshot.md#el-fork)（上下文继承/子任务派生的雏形）：
 
 ```python
 async def fork(self, parent_context: AgentContext, config: ForkConfig):

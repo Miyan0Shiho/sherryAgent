@@ -1,4 +1,16 @@
-# 测试运行指南
+---
+title: "测试运行指南（Legacy）"
+status: archived
+created: 2026-04-03
+updated: 2026-04-07
+related:
+  - "../INDEX.md"
+  - "../plans/phoenix-roadmap.md"
+---
+
+# 测试运行指南（Legacy）
+
+> 说明：本仓库当前处于 **docs-only（Egg）**，已不包含可运行实现与测试目录。本文档保留为 pre-phoenix 的工程实践参考，供未来进入 Chick 阶段后重建测试体系时复用。
 
 ## 概述
 

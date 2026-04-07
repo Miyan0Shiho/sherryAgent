@@ -2,24 +2,21 @@
 
 > 基于 Claude Code 与 OpenClaw 两大 AI Agent 框架优势融合的 Python 多 Agent 框架，用于学习 Agent 开发、毕业项目和简历项目。
 
-## Build & Development
+## Mode: docs-only (Egg)
 
-```bash
-# 安装依赖
-uv sync
+本仓库当前处于 **docs-only** 阶段：实现代码已被“毁灭”以便重生。你不应尝试运行 CLI、测试、类型检查等命令。
 
-# 运行 CLI
-uv run sherry-agent
+## How To Work Here
 
-# 运行测试
-uv run pytest
+### 1) 先读（入口）
 
-# 类型检查
-uv run mypy src/
+1. `docs/INDEX.md`（Story Suite 入口）
+2. `docs/vision/north-star.md`（北极星：成功指标与失败边界）
+3. `docs/guides/spec-authority.md`（双权威与冲突裁决）
 
-# 代码检查
-uv run ruff check src/
-```
+### 2) 再做（执行权威）
+
+任何新增/修改都必须先落到 `.trae/specs/*`（spec/tasks/checklist），然后同步更新 `docs/*` 的契约与叙事口径。
 
 ## Stack
 
@@ -64,15 +61,27 @@ SherryAgent 采用六层融合架构：
 
 ## Working Rules
 
-### MVP 开发顺序
+### Spec Authority（必须遵守）
 
-1. **MVP-1**: 核心Agent Loop（2周）
-2. **MVP-2**: 记忆与持久化（3周）
-3. **MVP-3**: 自主运行（2周）
-4. **MVP-4**: 多Agent编排（3周）
-5. **MVP-5**: Skill插件与生态（2周）
+SherryAgent 采用 **`.trae/specs` + `docs/` 双权威**：
 
-详见 [docs/plans/mvp-roadmap.md](docs/plans/mvp-roadmap.md)。
+- **`.trae/specs/*`：开发执行权威**（做什么、验收是什么、任务如何拆分）
+- **`docs/*`：系统契约与叙事权威**（长期结构、术语、安全原则、Story 口径）
+- **OpenSpec：方法论参考**（文档写法/模板参考，不作为项目权威规范来源）
+
+冲突裁决写在：[docs/guides/spec-authority.md](docs/guides/spec-authority.md)
+
+### Definition of Done（文档版）
+
+任何非 trivial 变更（新增 Story、修改系统契约、安全策略、流程）完成时，至少满足：
+
+- `.trae/specs`：对应 spec/tasks/checklist 已更新
+- `docs/`：相关 Story/契约文档已更新且术语一致
+- `docs/INDEX.md`：能导航到新增/修改的入口
+
+### Phoenix 开发顺序（Story 驱动）
+
+以 5 个 Story 为计划主轴，统一由 `.trae/specs/story-*/` 驱动。
 
 ### 安全红线
 
@@ -91,6 +100,13 @@ SherryAgent 采用六层融合架构：
 ## 文档索引
 
 完整文档索引见 [docs/INDEX.md](docs/INDEX.md)。
+
+## 推荐阅读路径（先故事，后契约）
+
+1. [docs/vision/north-star.md](docs/vision/north-star.md)
+2. [docs/INDEX.md](docs/INDEX.md) 的 Story Suite（5 个故事）
+3. [docs/reference/glossary.md](docs/reference/glossary.md)
+4. [docs/specs/six-layer-architecture.md](docs/specs/six-layer-architecture.md)
 
 | 目录 | 内容 |
 |------|------|

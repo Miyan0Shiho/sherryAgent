@@ -250,12 +250,14 @@ token_count = estimator.estimate(text)
 
 ### 现有实现状态
 
-| 模块 | 指标覆盖 | 实现位置 | 状态 |
+> 说明：本表反映 pre-phoenix 的历史实现快照（实现代码已删除）。能力口径统一以 `docs/legacy/implementation-snapshot.md` 的锚点为准。
+
+| 模块 | 指标覆盖 | 能力锚点（历史） | 状态 |
 |------|----------|----------|------|
-| 资源监控 | CPU、内存 | `infrastructure/monitoring.py` | ✅ 已实现 |
-| Token 追踪 | 输入/输出/缓存 | `execution/agent_loop.py` | ✅ 已实现 |
-| Token 估算 | 文本 Token 数 | `infrastructure/token_estimator.py` | ✅ 已实现 |
-| 性能基准 | 延迟、吞吐 | `tests/benchmark/` | ✅ 已实现 |
+| 资源监控 | CPU、内存 | `implementation-snapshot.md#ifl-monitoring` | 历史实现（已删除） |
+| Token 追踪 | 输入/输出/缓存 | `implementation-snapshot.md#el-agentloop` | 历史实现（已删除） |
+| Token 估算 | 文本 Token 数 | `implementation-snapshot.md#ifl-tokenestimator` | 历史实现（已删除） |
+| 性能基准 | 延迟、吞吐 | `implementation-snapshot.md#ev-benchmarkharness` | 历史实现（已删除） |
 | 错误追踪 | 异常日志 | `structlog` | ⚠️ 部分实现 |
 | 告警系统 | 阈值告警 | `ResourceMonitor` 回调 | ⚠️ 部分实现 |
 | 指标导出 | Prometheus 格式 | - | ❌ 未实现 |
@@ -286,4 +288,4 @@ token_count = estimator.estimate(text)
 - [六层融合架构](../specs/six-layer-architecture.md)
 - [Agent Loop 设计](../specs/agent-loop.md)
 - [技术栈总览](tech-stack.md)
-- [性能基准测试报告](../../tests/benchmark/benchmark_report.md)
+- 性能基准历史证据：见 [agent-evaluation-retrospective.md](../research/agent-evaluation-retrospective.md)（仅保留研究结论，源码与日志已删除）

@@ -86,11 +86,11 @@ graph TB
 
 ### 1. 交互层 (Interface Layer)
 
-| 组件 | 设计目标 | 实现状态 | 完成度 | 关键文件 |
+| 组件 | 设计目标 | 实现状态 | 完成度 | Legacy 引用 |
 |------|---------|---------|--------|---------|
-| CLI (Textual TUI) | 提供交互式终端界面 | ✅ 已完成 | 100% | [tui.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/cli/tui.py) |
-| WebSocket | 实时状态推送 | ✅ 已完成 | 100% | [websocket.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/autonomy/websocket.py) |
-| HTTP API | RESTful 接口 | ⚠️ 部分实现 | 30% | [websocket.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/autonomy/websocket.py) |
+| CLI (Textual TUI) | 提供交互式终端界面 | ✅ 已完成 | 100% | [IL-CLI-TUI](../legacy/implementation-snapshot.md#il-cli-tui) |
+| WebSocket | 实时状态推送 | ✅ 已完成 | 100% | [IL-WebSocket](../legacy/implementation-snapshot.md#il-websocket) |
+| HTTP API | RESTful 接口 | ⚠️ 部分实现 | 30% | [IL-HTTP-API](../legacy/implementation-snapshot.md#il-http-api) |
 
 **已实现功能：**
 - ✅ Textual TUI 界面，支持流式输出
@@ -123,10 +123,10 @@ graph TB
 
 ### 2. 编排层 (Orchestration Layer)
 
-| 组件 | 设计目标 | 实现状态 | 完成度 | 关键文件 |
+| 组件 | 设计目标 | 实现状态 | 完成度 | Legacy 引用 |
 |------|---------|---------|--------|---------|
-| Orchestrator | 任务分解与调度 | ✅ 已完成 | 90% | [orchestrator.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/orchestration/orchestrator.py) |
-| Agent Teams | 多 Agent 协作 | ✅ 已完成 | 85% | [teams.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/orchestration/teams.py) |
+| Orchestrator | 任务分解与调度 | ✅ 已完成 | 90% | [OL-Orchestrator](../legacy/implementation-snapshot.md#ol-orchestrator) |
+| Agent Teams | 多 Agent 协作 | ✅ 已完成 | 85% | [OL-Teams](../legacy/implementation-snapshot.md#ol-teams) |
 
 **已实现功能：**
 - ✅ LLM 驱动的任务分解
@@ -158,11 +158,11 @@ graph TB
 
 ### 3. 执行层 (Execution Layer)
 
-| 组件 | 设计目标 | 实现状态 | 完成度 | 关键文件 |
+| 组件 | 设计目标 | 实现状态 | 完成度 | Legacy 引用 |
 |------|---------|---------|--------|---------|
-| Agent Loop | 流式执行循环 | ✅ 已完成 | 95% | [agent_loop.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/execution/agent_loop.py) |
-| Fork | 子 Agent 派生 | ✅ 已完成 | 90% | [forker.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/orchestration/forker.py) |
-| Lane Queue | 并发控制 | ✅ 已完成 | 85% | [lane.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/orchestration/lane.py) |
+| Agent Loop | 流式执行循环 | ✅ 已完成 | 95% | [EL-AgentLoop](../legacy/implementation-snapshot.md#el-agentloop) |
+| Fork | 子 Agent 派生 | ✅ 已完成 | 90% | [EL-Fork](../legacy/implementation-snapshot.md#el-fork) |
+| Lane Queue | 并发控制 | ✅ 已完成 | 85% | [OL-Lane](../legacy/implementation-snapshot.md#ol-lane) |
 
 **已实现功能：**
 - ✅ 完整的 Agent 执行循环
@@ -197,11 +197,11 @@ graph TB
 
 ### 4. 自主运行层 (Autonomy Layer)
 
-| 组件 | 设计目标 | 实现状态 | 完成度 | 关键文件 |
+| 组件 | 设计目标 | 实现状态 | 完成度 | Legacy 引用 |
 |------|---------|---------|--------|---------|
-| Heartbeat Engine | 心跳驱动 | ✅ 已完成 | 95% | [heartbeat.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/autonomy/heartbeat.py) |
-| Cron Scheduler | 定时调度 | ✅ 已完成 | 100% | [scheduler.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/autonomy/scheduler.py) |
-| Recovery | 断点续传 | ⚠️ 部分实现 | 60% | [status.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/autonomy/status.py) |
+| Heartbeat Engine | 心跳驱动 | ✅ 已完成 | 95% | [AUL-Heartbeat](../legacy/implementation-snapshot.md#aul-heartbeat) |
+| Cron Scheduler | 定时调度 | ✅ 已完成 | 100% | [AUL-Scheduler](../legacy/implementation-snapshot.md#aul-scheduler) |
+| Recovery | 断点续传 | ⚠️ 部分实现 | 60% | [AUL-Recovery](../legacy/implementation-snapshot.md#aul-recovery) |
 
 **已实现功能：**
 - ✅ While-True 心跳循环
@@ -234,11 +234,11 @@ graph TB
 
 ### 5. 记忆层 (Memory Layer)
 
-| 组件 | 设计目标 | 实现状态 | 完成度 | 关键文件 |
+| 组件 | 设计目标 | 实现状态 | 完成度 | Legacy 引用 |
 |------|---------|---------|--------|---------|
-| Short-term Memory | 上下文管理 | ✅ 已完成 | 100% | [short_term.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/memory/short_term.py) |
-| Long-term Memory | 知识持久化 | ✅ 已完成 | 95% | [long_term.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/memory/long_term.py) |
-| Memory Bridge | 记忆转化 | ✅ 已完成 | 90% | [bridge.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/memory/bridge.py) |
+| Short-term Memory | 上下文管理 | ✅ 已完成 | 100% | [ML-ShortTerm](../legacy/implementation-snapshot.md#ml-shortterm) |
+| Long-term Memory | 知识持久化 | ✅ 已完成 | 95% | [ML-LongTerm](../legacy/implementation-snapshot.md#ml-longterm) |
+| Memory Bridge | 记忆转化 | ✅ 已完成 | 90% | [ML-Bridge](../legacy/implementation-snapshot.md#ml-bridge) |
 
 **已实现功能：**
 - ✅ 四层压缩策略（Auto / Session / Reactive / Micro）
@@ -273,12 +273,12 @@ graph TB
 
 ### 6. 基础设施层 (Infrastructure Layer)
 
-| 组件 | 设计目标 | 实现状态 | 完成度 | 关键文件 |
+| 组件 | 设计目标 | 实现状态 | 完成度 | Legacy 引用 |
 |------|---------|---------|--------|---------|
-| Permissions | 六层权限管道 | ✅ 已完成 | 95% | [checker.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/infrastructure/security/checker.py) |
-| Sandbox | 工具沙箱 | ✅ 已完成 | 90% | [sandbox.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/infrastructure/security/sandbox.py) |
-| MCP Client | 外部工具协议 | ✅ 已完成 | 85% | [client.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/infrastructure/mcp/client.py) |
-| Skill Plugin | 插件系统 | ✅ 已完成 | 90% | [manager.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/plugins/manager.py) |
+| Permissions | 六层权限管道 | ✅ 已完成 | 95% | [IFL-Permissions](../legacy/implementation-snapshot.md#ifl-permissions) |
+| Sandbox | 工具沙箱 | ✅ 已完成 | 90% | [IFL-Sandbox](../legacy/implementation-snapshot.md#ifl-sandbox) |
+| MCP Client | 外部工具协议 | ✅ 已完成 | 85% | [IFL-MCP](../legacy/implementation-snapshot.md#ifl-mcp) |
+| Skill Plugin | 插件系统 | ✅ 已完成 | 90% | [IFL-Skills-Plugins](../legacy/implementation-snapshot.md#ifl-skills-plugins) |
 
 **已实现功能：**
 - ✅ 六层权限检查管道

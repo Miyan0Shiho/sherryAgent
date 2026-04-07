@@ -193,7 +193,7 @@ flowchart TD
    - Tool Executor: 执行工具调用
 
 🔧 调用工具: ReadFile
-   参数: {"path": "src/main.py"}
+   参数: {"path": "<repo-file>"}
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    ✅ 工具结果: 成功读取文件 (234 行)
 
@@ -225,7 +225,7 @@ SherryAgent v0.1.0
    - Tool Executor: 执行工具调用
 
 🔧 调用工具: ReadFile
-✅ 工具结果: {"path": "src/main.py", "lines": 234}
+✅ 工具结果: {"path": "<repo-file>", "lines": 234}
 
 2. 架构特点
    - 六层融合架构

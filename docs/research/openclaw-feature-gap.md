@@ -59,7 +59,7 @@ flowchart TD
 
 ### SherryAgent 实现细节
 
-**关键文件：** [heartbeat.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/autonomy/heartbeat.py)
+**Legacy 引用：** [AUL-Heartbeat](../legacy/implementation-snapshot.md#aul-heartbeat)
 
 ```python
 class HeartbeatEngine:
@@ -150,9 +150,9 @@ graph TB
 ### SherryAgent 记忆系统实现
 
 **关键文件：**
-- [short_term.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/memory/short_term.py)
-- [long_term.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/memory/long_term.py)
-- [bridge.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/memory/bridge.py)
+- [ML-ShortTerm](../legacy/implementation-snapshot.md#ml-shortterm)
+- [ML-LongTerm](../legacy/implementation-snapshot.md#ml-longterm)
+- [ML-Bridge](../legacy/implementation-snapshot.md#ml-bridge)
 
 **短期记忆（ShortTermMemory）：**
 ```python
@@ -289,9 +289,7 @@ DEBUG=false
 ### SherryAgent 插件系统实现
 
 **关键文件：**
-- [manager.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/plugins/manager.py)
-- [loader.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/plugins/loader.py)
-- [skill_parser.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/plugins/skill_parser.py)
+- [IFL-Skills-Plugins](../legacy/implementation-snapshot.md#ifl-skills-plugins)
 
 **插件加载流程：**
 ```python
@@ -413,7 +411,7 @@ graph TB
 
 ### SherryAgent Lane 队列实现
 
-**关键文件：** [lane.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/orchestration/lane.py)
+**Legacy 引用：** [OL-Lane](../legacy/implementation-snapshot.md#ol-lane)
 
 ```python
 class LaneQueue:
@@ -550,7 +548,7 @@ graph TB
 
 ### SherryAgent 渠道实现
 
-**关键文件：** [websocket.py](file:///Users/liuminxuan/Desktop/sherryAgent/src/sherry_agent/autonomy/websocket.py)
+**Legacy 引用：** [IL-WebSocket](../legacy/implementation-snapshot.md#il-websocket)
 
 ```python
 class WebSocketServer:
