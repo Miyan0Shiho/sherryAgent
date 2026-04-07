@@ -2,82 +2,45 @@
 title: "版本约束"
 status: approved
 created: 2026-04-03
-updated: 2026-04-03
-related: ["tech-stack.md"]
+updated: 2026-04-07
+related:
+  - "./tech-stack.md"
 ---
 
 # 版本约束
 
-## 核心依赖版本
+本文档记录未来恢复实现时的目标版本约束，不代表当前仓库已经具备这些依赖。
 
-| 依赖 | 最低版本 | 说明 |
-|------|---------|------|
-| Python | >= 3.12 | 需要TaskGroup、type alias、改进的错误信息 |
-| anthropic | >= 0.40 | 流式响应、prompt cache、tool use |
-| openai | >= 1.50 | 结构化输出、function calling |
-| textual | >= 3.0 | TUI框架 |
-| aiosqlite | >= 0.20 | 异步SQLite |
-| sqlite-vec | >= 0.1 | SQLite向量扩展 |
-| APScheduler | >= 3.10 | 异步调度器 |
-| pydantic | >= 2.10 | 数据验证和序列化 |
-| structlog | >= 24.0 | 结构化日志 |
-| pluggy | >= 1.5 | 插件框架 |
-| fastapi | >= 0.115 | HTTP API框架 |
-| websockets | >= 13.0 | WebSocket支持 |
+## 核心依赖
+
+| 依赖 | 目标版本 | 用途 |
+|------|------|------|
+| Python | >= 3.12 | 异步并发、类型能力、TaskGroup |
+| anthropic | >= 0.40 | 主模型 SDK |
+| openai | >= 1.50 | 主模型 SDK |
+| textual | >= 3.0 | CLI 交互入口 |
+| aiosqlite | >= 0.20 | 轻量状态存储 |
+| sqlite-vec | >= 0.1 | 早期向量索引 |
+| APScheduler | >= 3.10 | 调度与触发 |
+| pydantic | >= 2.10 | 数据模型与校验 |
+| pydantic-settings | >= 2.6 | 分层配置 |
+| structlog | >= 24.0 | 结构化日志与审计 |
+| fastapi | >= 0.115 | API / Webhook |
+| websockets | >= 13.0 | 状态推送 |
+| click | >= 8.1 | 命令行参数层 |
+
+## 开发与验证依赖
+
+| 依赖 | 目标版本 | 用途 |
+|------|------|------|
 | pytest | >= 8.0 | 测试框架 |
-| pytest-asyncio | >= 0.24 | 异步测试支持 |
+| pytest-asyncio | >= 0.24 | 异步测试 |
+| pytest-cov | >= 5.0 | 覆盖率 |
+| ruff | >= 0.6 | 静态检查 |
+| mypy | >= 1.11 | 类型检查 |
 
-## Python 3.12+ 特性依赖
+## 说明
 
-### TaskGroup
+- 版本约束服务当前蓝图，不再附带旧实现期的完整 `pyproject` 样例。
+- 一旦进入恢复实现阶段，实际版本应由 `.trae/specs/platform-foundation/` 与 `.trae/specs/release-program/` 共同约束。
 
-```python
-async with asyncio.TaskGroup() as tg:
-    task1 = tg.create_task(execute_tool(tool1))
-    task2 = tg.create_task(execute_tool(tool2))
-# 自动等待所有任务完成，异常自动传播
-```
-
-### Type Alias
-
-```python
-type Message = dict[str, Any]
-type ToolResult = tuple[str, str]  # (call_id, result)
-```
-
-### 改进的错误信息
-
-Python 3.12 提供更清晰的错误追踪，便于调试异步代码。
-
-## pyproject.toml 示例
-
-```toml
-[project]
-name = "sherry-agent"
-version = "0.1.0"
-requires-python = ">=3.12"
-dependencies = [
-    "anthropic>=0.40",
-    "openai>=1.50",
-    "textual>=3.0",
-    "aiosqlite>=0.20",
-    "sqlite-vec>=0.1",
-    "apscheduler>=3.10",
-    "pydantic>=2.10",
-    "pydantic-settings>=2.6",
-    "structlog>=24.0",
-    "pluggy>=1.5",
-    "fastapi>=0.115",
-    "websockets>=13.0",
-    "click>=8.1",
-    "sentence-transformers>=3.0",
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=8.0",
-    "pytest-asyncio>=0.24",
-    "pytest-cov>=5.0",
-    "ruff>=0.6",
-    "mypy>=1.11",
-]

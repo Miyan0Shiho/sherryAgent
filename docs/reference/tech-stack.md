@@ -2,60 +2,52 @@
 title: "技术栈总览"
 status: approved
 created: 2026-04-03
-updated: 2026-04-03
-related: ["version-constraints.md", "project-structure.md"]
+updated: 2026-04-07
+related:
+  - "./version-constraints.md"
+  - "./project-structure.md"
+  - "../architecture/module-map.md"
 ---
 
 # 技术栈总览
 
-## 技术选型
+本文档描述的是 **未来实现阶段的目标技术栈口径**，服务当前公司级蓝图，而不是对已存在实现的描述。
 
-| 模块 | 推荐方案 | 备选方案 | 选择理由 |
-|------|---------|---------|---------|
-| 异步框架 | asyncio (stdlib) | - | Python原生，零依赖，与3.12+特性深度集成 |
-| CLI框架 | Textual + click | Rich + Prompt Toolkit | Textual支持完整TUI（面板、布局、实时刷新），click处理命令行参数 |
-| LLM调用 | anthropic + openai SDK | litellm | 原生SDK提供完整的类型注解和流式支持，避免抽象层带来的类型丢失 |
-| 数据库 | aiosqlite + sqlite-vec | DuckDB | SQLite零配置、单文件部署，FTS5全文检索成熟，sqlite-vec支持向量索引 |
-| Embedding | sentence-transformers | OpenAI API | 本地推理零成本，支持多语言，all-MiniLM-L6-v2模型体积小速度快 |
-| 任务调度 | APScheduler | 自研 | 成熟稳定的调度库，支持Cron表达式、间隔调度、日期调度，异步友好 |
-| 配置管理 | pydantic-settings + TOML | dynaconf | Pydantic提供类型安全的配置验证，TOML是Python生态标准配置格式 |
-| 日志 | structlog | loguru | 结构化JSON日志，支持上下文绑定、处理器链，便于日志采集和分析 |
-| 插件系统 | pluggy | stevedore | pytest同款插件框架，轻量、文档完善、hook规范清晰 |
-| WebSocket | fastapi + websockets | aiohttp | FastAPI自动生成OpenAPI文档，websockets库性能优异，生态完善 |
-| 测试 | pytest + pytest-asyncio | - | Python测试事实标准，pytest-asyncio提供完善的异步测试支持 |
-| 依赖管理 | uv + pyproject.toml | poetry | uv比poetry快10-100倍，pyproject.toml是PEP标准格式 |
+## 平台核心技术
 
-## 架构分层技术栈
+| 能力域 | 推荐方案 | 说明 |
+|------|------|------|
+| 语言运行时 | Python 3.12+ | 统一异步模型与类型能力 |
+| 并发模型 | asyncio | 适合 I/O 密集和流式任务 |
+| CLI 入口 | Textual + click | 交互入口之一 |
+| HTTP / Webhook | FastAPI | API 与事件入口 |
+| 实时通信 | websockets | 状态推送和异步反馈 |
+| LLM 接入 | anthropic / openai SDK | 主模型接入层 |
+| 本地模型 | Ollama 或同类本地 provider | 小模型、成本控制、对比实验 |
+| 关系与轻量状态存储 | SQLite / aiosqlite | 早期单机阶段 |
+| 检索与索引 | SQLite FTS + 向量索引 | 早期混合检索形态 |
+| 调度 | APScheduler | cron / interval / date 触发 |
+| 配置 | pydantic-settings + TOML | 分层配置与校验 |
+| 结构化日志 | structlog | 日志、上下文、审计字段统一 |
 
-| 层级 | 技术选型 |
-|------|----------|
-| 交互层 | Textual (TUI) + FastAPI (HTTP) + websockets (实时推送) |
-| 编排层 | asyncio.TaskGroup + pluggy (插件hook) |
-| 执行层 | asyncio (异步生成器) + anthropic/openai SDK |
-| 自主运行层 | APScheduler + asyncio (心跳循环) |
-| 记忆层 | aiosqlite + sqlite-vec + sentence-transformers |
-| 基础设施层 | pydantic-settings + structlog + pluggy |
+## 模块对应关系
 
-## 设计考量
+| 模块 | 主要技术依赖 |
+|------|------|
+| Gateway | Textual, click, FastAPI, websockets |
+| Task Service | SQLite, pydantic, structlog |
+| Planner | LLM SDK, pydantic, retrieval API |
+| Execution Engine | asyncio, LLM SDK, tool runtime |
+| Memory & Retrieval | SQLite, FTS, vector index |
+| Policy & Guardrail | 配置规则、审计日志、沙箱策略 |
+| Scheduler & Trigger | APScheduler, event adapters |
+| Observability & Evaluation | structlog, metrics, benchmark artifacts |
+| Cost & Capacity Controller | cost accounting, cache, rate limiting |
+| Release & Ops | 配置管理、告警、回滚 runbook |
 
-### 为什么选择 asyncio 而非多线程？
+## 技术选型原则
 
-- LLM API 调用是 I/O 密集型，asyncio 天然适合
-- 避免多线程的 GIL 限制和锁复杂性
-- Python 3.12+ 的 TaskGroup 提供了更优雅的并发控制
-- 流式响应需要异步生成器支持
+- 早期优先单机、同进程、低运维复杂度。
+- 边界按未来拆分服务设计，但不在一开始引入过多分布式复杂度。
+- 模型能力不足优先通过流程、检索、缓存、评测和策略补齐，不默认通过换更大模型解决。
 
-### 为什么选择 SQLite 而非 PostgreSQL？
-
-- 零配置、单文件部署，降低用户使用门槛
-- 本地优先原则，不依赖外部服务
-- FTS5 全文检索成熟稳定
-- sqlite-vec 扩展支持向量索引
-- 可选支持迁移到 PostgreSQL
-
-### 为什么选择 Textual 而非 Rich？
-
-- Textual 支持完整的 TUI 应用（面板、布局、事件循环）
-- Rich 仅支持富文本输出，无法构建交互式界面
-- Textual 基于 Rich，继承其渲染能力
-- 支持响应式布局和 CSS 样式

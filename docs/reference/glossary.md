@@ -4,44 +4,38 @@ status: draft
 created: 2026-04-07
 updated: 2026-04-07
 related:
-  - "../specs/six-layer-architecture.md"
-  - "../vision/north-star.md"
+  - "../architecture/system-blueprint.md"
+  - "../specs/core-data-contracts.md"
 ---
 
 # 术语表
 
-本术语表用于统一 SherryAgent 的叙事口径与系统契约。所有 Story 与 `.trae/specs` 中的关键概念应优先使用这里的术语。
+## 当前有效术语
 
-## 核心概念
+- **Hybrid Platform**：同时支持严谨开发协作和长期自主执行的平台定位。
+- **Task**：统一任务对象，承载来源、目标、模式、风险、预算和状态。
+- **Run**：某个 Task 的一次具体执行实例。
+- **Evidence**：支撑结论、报告或决策的可定位证据。
+- **Decision**：策略、权限、降级、升级、确认等关键裁决记录。
+- **Cost Record**：单次 Run 的 token、延迟、工具调用和成本摘要。
+- **Gateway**：CLI/API/Webhook/cron/event 统一入口。
+- **Task Service**：任务状态机、幂等键、优先级、依赖和恢复边界。
+- **Planner**：模式选择、任务拆解、模型路由、工具路由、预算分配。
+- **Execution Engine**：执行循环、子任务执行、取消、超时、恢复。
+- **Memory & Retrieval**：上下文装配、长期记忆、检索、压缩、冷热分层。
+- **Policy & Guardrail**：风险分级、确认流、沙箱、审计、阻断与降级。
+- **Scheduler & Trigger**：cron、事件、条件触发、节流和批处理调度。
+- **Observability & Evaluation**：日志、指标、trace、run replay、benchmark、regression。
+- **Cost & Capacity Controller**：预算、缓存、限流、并发控制、fallback、容量配额。
+- **Release & Ops**：发布门禁、回滚、值班、事故管理、变更治理。
+- **Runtime Mode**：`interactive-dev`、`autonomous-safe`、`background-ops`、`bulk-analysis` 四种运行模式。
+- **Story**：验收与演示套件，不是顶层项目规划主轴。
+- **Capability Benchmark**：能力基准评测，用于比较 baseline 和 current。
+- **Regression Suite**：固定失败样本、事故样本和边界样本的回归集合。
 
-- **Story（场景包/面试故事）**：一个可演示的闭环能力包，必须包含演示脚本、输出契约、权限策略、失败降级与六层映射。
-- **六层架构**：交互层、编排层、执行层、自主运行层、记忆层、基础设施层。
-- **Agent Loop**：单 agent 的“推理-工具-观察”循环，以事件流方式输出过程可观察信息。
-- **Orchestrator（编排器）**：把任务分解成子任务，管理依赖与执行策略（并行/串行/重试/汇总）。
-- **Lane（并发通道）**：并发控制单元（session 串行 + global 并发），避免工具执行竞态与资源爆炸。
-- **Fork（子 Agent 派生）**：从父 agent 派生子 agent，继承部分上下文与约束，执行子任务并回传结果。
+## 历史术语
 
-## 自主运行与触发
-
-- **Heartbeat（心跳引擎）**：后台 while-true 驱动循环，负责检查待办、触发任务、更新状态与资源监控。
-- **Cron（定时调度）**：基于 APScheduler 的定时任务触发机制（cron/interval/date）。
-- **条件触发（Condition Trigger）**：满足某条件（阈值、事件、状态变化）后启动任务的机制。
-
-## 安全与合规
-
-- **权限管道（6-Layer Permission Pipeline）**：工具声明式权限 -> 全局规则 -> 自动模式分类 -> 用户配置 -> 企业策略 -> 沙箱隔离。
-- **审计日志（Audit Log）**：记录工具调用、权限决策、人工确认与关键状态变化，用于回放与追责。
-- **风险等级（Risk Level）**：LOW / MEDIUM / HIGH / CRITICAL，用于决定自动放行、确认或拒绝策略。
-
-## 记忆
-
-- **短期记忆（STM）**：会话上下文管理与压缩策略（micro/auto/session/reactive）。
-- **长期记忆（LTM）**：跨会话知识存储与检索（SQLite + FTS + 向量/混合检索）。
-- **记忆桥接（Bridge）**：把会话洞察从 STM 提炼写入 LTM，并在新任务中检索注入。
-
-## 工具与扩展
-
-- **Tool（工具）**：可被 agent 调用的外部操作（文件、shell、http 等），必须走权限检查。
-- **Skill（技能）**：以文档/插件形式封装的能力包（通常包含工具、提示与门控规则）。
-- **MCP（Model Context Protocol）**：连接外部工具服务器的协议与客户端能力。
+- **MVP-1..5**：已归档的旧阶段口径，不再作为执行主轴。
+- **Phoenix / Egg / Chick**：已归档的比喻式路线图术语，不再作为当前计划口径。
+- **Fork / Lane / Teammate**：历史实现和研究中出现的执行策略术语，当前不是一级模块边界。
 
