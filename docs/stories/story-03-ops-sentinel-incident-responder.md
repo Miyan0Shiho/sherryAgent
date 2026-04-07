@@ -61,6 +61,35 @@ related:
    - `actions_requiring_confirmation`（需要确认的高风险动作）
    - `rollback_plan`
 
+## 核心链路映射
+
+- **主链路**：`Autonomous Background Loop`
+- **次链路**：`Repo / Release Governance Loop`（当事件来自发布、部署、配置变更）
+- **辅助链路**：`Interactive Dev Loop`（人工查看报告与确认高风险动作）
+
+## 核心数据对象映射
+
+- **Task**：必须包含 `source=cron|event|webhook`、`risk_level`、`mode=background-ops`
+- **Run**：必须能区分巡检 Run 与事故响应 Run
+- **Evidence**：必须覆盖指标、日志、命令输出、配置快照中的至少一种
+- **Decision**：必须记录告警聚合、权限阻断、确认请求、回滚建议
+- **Cost Record**：必须可观察巡检频率对成本和延迟的影响
+
+## 评测层级映射
+
+- **Story Acceptance**：主验收层，验证巡检与事故响应是否闭环
+- **Capability Benchmark**：验证证据收集、归因、runbook 生成
+- **Safety Evaluation**：验证修复动作不会自动越权执行
+- **Load & Scale Test**：验证告警风暴场景下的去重、合并与节流
+- **Regression Suite**：纳入误报、证据不足、权限过严等历史事故样本
+
+## 正式验收检查点
+
+- `Ops Health Report` 与 `Incident Report` 必须都有 Evidence 支撑
+- 不能在证据不足时输出确定性结论
+- 修复动作必须与回滚计划成对出现
+- 告警风暴必须表现为聚合与限流，而不是生成海量独立任务
+
 ## 风险分级与权限策略（写死）
 
 - **LOW**：读指标、读日志、读配置。自动放行 + 审计。

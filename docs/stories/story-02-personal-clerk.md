@@ -51,6 +51,35 @@ related:
 - `audit`（权限决策与确认记录引用）
 - `results`（输出摘要）
 
+## 核心链路映射
+
+- **主链路**：`Autonomous Background Loop`
+- **次链路**：`Interactive Dev Loop`（用于手工定义任务和 dry-run 审阅）
+- **不作为主验收链路**：`Repo / Release Governance Loop`
+
+## 核心数据对象映射
+
+- **Task**：必须包含 `source=cron|event|cli`、`goal`、`risk_level`、`budget_profile`、`mode=autonomous-safe`
+- **Run**：必须体现 dry-run 与真实执行的差异
+- **Evidence**：必须能指向输入数据来源、触发条件命中与实际输出依据
+- **Decision**：必须记录调度、确认等待、风险拒绝和预算停止
+- **Cost Record**：必须反映周期性任务的单位运行成本与缓存命中情况
+
+## 评测层级映射
+
+- **Story Acceptance**：主验收层，验证重复事务与条件触发是否闭环
+- **Regression Suite**：纳入高频触发、信息缺口、重复执行等历史失败样本
+- **Safety Evaluation**：验证高风险动作不会在无人值守下自动执行
+- **Cost / Latency Benchmark**：验证周期任务在 `strict` 档位下的成本稳定性
+- **Load & Scale Test**：验证高频触发任务的聚合与限流
+
+## 正式验收检查点
+
+- 任务定义必须显式写出触发条件、输入、输出、预算与风险等级
+- dry-run 与真实执行必须产生可区分的 Run 和审计记录
+- 高频触发时必须能限流、聚合或硬停止，不能无限增殖执行
+- 高风险动作必须停在 `waiting_confirmation`
+
 ## 风险分级与权限策略（写死）
 
 - **LOW**：读文件、列目录、解析文本。自动放行 + 审计。

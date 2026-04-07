@@ -60,6 +60,35 @@ related:
    - `rollback_plan`
    - `actions_requiring_confirmation`
 
+## 核心链路映射
+
+- **主链路**：`Repo / Release Governance Loop`
+- **次链路**：`Interactive Dev Loop`（用于手工审阅治理报告与发布 dry-run）
+- **辅助链路**：`Autonomous Background Loop`（用于定期治理扫描）
+
+## 核心数据对象映射
+
+- **Task**：必须包含 `source=cli|event|cron|webhook`、`risk_level`、`mode=interactive-dev|background-ops`
+- **Run**：必须区分治理扫描 Run 与发布门禁 Run
+- **Evidence**：必须支撑每一条门禁结论、风险结论和回滚建议
+- **Decision**：必须记录门禁通过/阻断、确认请求、回滚建议与高风险拒绝
+- **Cost Record**：必须反映扫描、构建、门禁评估的单位成本和时延
+
+## 评测层级映射
+
+- **Story Acceptance**：主验收层，验证 repo 治理和发布门禁闭环
+- **Capability Benchmark**：验证门禁判断、风险识别、任务拆解与报告质量
+- **Safety Evaluation**：验证部署、回滚、凭据相关动作不会自动越权执行
+- **Regression Suite**：纳入误放行、误阻断、回滚缺失等历史发布失败样本
+- **Cost / Latency Benchmark**：验证日常治理扫描与发布 dry-run 的成本与时延
+
+## 正式验收检查点
+
+- `Repo Health Report` 和 `Release Plan` 都必须有 Evidence 支撑
+- 门禁失败时必须输出最小阻塞项，而不是泛泛而谈
+- 任何生产相关动作必须停在确认或拒绝
+- `rollback_plan` 不能缺席，缺席则判定验收失败
+
 ## 风险分级与权限策略（写死）
 
 - **LOW**：读取、分析、生成报告。自动放行 + 审计。

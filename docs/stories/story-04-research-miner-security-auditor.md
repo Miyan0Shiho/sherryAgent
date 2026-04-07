@@ -51,6 +51,35 @@ related:
 - `risks`（风险清单与建议）
 - `actions`（可执行的行动项，带风险等级与所需确认）
 
+## 核心链路映射
+
+- **主链路**：`Bulk Research / Analysis Loop`
+- **次链路**：`Autonomous Background Loop`（用于定期周报、定期审计）
+- **辅助链路**：`Interactive Dev Loop`（用于手工定义范围、审阅报告）
+
+## 核心数据对象映射
+
+- **Task**：必须包含 `source=cli|cron|event`、`mode=bulk-analysis` 或 `autonomous-safe`
+- **Run**：必须体现批量输入、分片执行和聚合输出
+- **Evidence**：必须能定位到 repo、依赖、外部来源或扫描结果
+- **Decision**：必须记录范围收缩、低置信标记、敏感数据限制与高风险阻断
+- **Cost Record**：必须反映批量任务的单位成本、缓存命中与聚合开销
+
+## 评测层级映射
+
+- **Story Acceptance**：主验收层，验证批量调研与安全审计链路
+- **Capability Benchmark**：验证来源可追溯、事实/推断分离、置信度标注
+- **Regression Suite**：纳入幻觉结论、无来源结论、超范围扫描等失败样本
+- **Load & Scale Test**：验证大范围扫描、分片、聚合与长跑稳定性
+- **Cost / Latency Benchmark**：验证吞吐优先模式下的单位成本与汇总时延
+
+## 正式验收检查点
+
+- 每条关键发现都必须要么有 Evidence，要么显式标记证据缺口
+- 结论必须区分事实、推断和行动建议
+- 大范围任务必须体现采样、分片或限流，而不是一把梭执行
+- 高风险扫描或敏感目录访问必须被明确限制范围
+
 ## 风险分级与权限策略（写死）
 
 - **LOW**：读 repo、读依赖列表、读配置。自动放行 + 审计。

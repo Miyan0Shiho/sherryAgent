@@ -57,6 +57,35 @@ related:
 - `acceptance`（对应 `.trae/specs` 的验收点引用）
 - `next_steps`（下一步最小任务）
 
+## 核心链路映射
+
+- **主链路**：`Interactive Dev Loop`
+- **次链路**：`Repo / Release Governance Loop`（当任务涉及 repo 治理、dry-run 门禁或变更建议时）
+- **不作为主验收链路**：`Autonomous Background Loop`、`Bulk Research / Analysis Loop`
+
+## 核心数据对象映射
+
+- **Task**：必须包含 `source=cli|api`、`goal`、`risk_level`、`budget_profile`、`mode=interactive-dev`
+- **Run**：必须包含 `plan_version`、`model_profile`、`toolset`、`outcome`
+- **Evidence**：必须能支撑关键设计判断、review 结论或工具执行结果
+- **Decision**：必须记录权限裁决、降级、预算停止或模型升级
+- **Cost Record**：必须输出本次开发会话的 token、工具调用、延迟与估算成本
+
+## 评测层级映射
+
+- **Story Acceptance**：主验收层，验证开发协作闭环是否成立
+- **Capability Benchmark**：验证规划、工具使用、review 质量
+- **Regression Suite**：纳入“误改文件”“越权写操作”“预算中断”历史失败样本
+- **Safety Evaluation**：验证高风险动作确认与拒绝是否生效
+- **Cost / Latency Benchmark**：验证高质量模式下的单位成本和 P95 延迟
+
+## 正式验收检查点
+
+- 能生成结构化 `Plan`，并引用对应 `.trae/specs` 验收点
+- 工具调用全链路可观察，且高风险动作不会绕过确认
+- 最终输出包含 `Evidence`、`Decision`、`Cost Record` 所需信息
+- 预算耗尽或工具失败时，能稳定降级为 progress / diagnosis 输出，而不是静默失败
+
 ## 风险分级与权限策略（写死）
 
 - **LOW**：只读分析、搜索、读取文件。自动放行 + 审计。
