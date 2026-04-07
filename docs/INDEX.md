@@ -68,14 +68,16 @@ updated: 2026-04-07
 
 | 文档 | 描述 |
 |------|------|
-| [six-layer-architecture.md](specs/six-layer-architecture.md) | 六层能力视角 |
-| [data-flow.md](specs/data-flow.md) | 历史数据流设计 |
-| [agent-loop.md](specs/agent-loop.md) | 历史 Agent Loop 设计 |
-| [memory-system.md](specs/memory-system.md) | 历史记忆系统设计 |
-| [task-persistence.md](specs/task-persistence.md) | 历史任务持久化设计 |
-| [multi-agent-orchestration.md](specs/multi-agent-orchestration.md) | 历史多 Agent 编排设计 |
-| [permission-system.md](specs/permission-system.md) | 权限系统设计 |
-| [observability-system.md](specs/observability-system.md) | 可观测性体系设计 |
+| [core-data-contracts.md](specs/core-data-contracts.md) | 核心数据契约：Task/Run/Evidence/Decision/Cost Record |
+| [six-layer-architecture.md](specs/six-layer-architecture.md) | 六层能力视角（能力来源，不等于模块蓝图） |
+| [data-flow.md](specs/data-flow.md) | 平台级数据流契约 |
+| [agent-loop.md](specs/agent-loop.md) | Execution Engine 中 Agent Loop 的运行契约 |
+| [memory-system.md](specs/memory-system.md) | Memory & Retrieval 契约 |
+| [task-persistence.md](specs/task-persistence.md) | Task Service 与恢复契约 |
+| [multi-agent-orchestration.md](specs/multi-agent-orchestration.md) | Planner 与编排契约 |
+| [permission-system.md](specs/permission-system.md) | Policy & Guardrail 契约 |
+| [heartbeat-engine.md](specs/heartbeat-engine.md) | Scheduler & Trigger 契约 |
+| [observability-system.md](specs/observability-system.md) | Observability & Evaluation 契约 |
 | [tech-stack.md](reference/tech-stack.md) | 技术栈总览 |
 | [project-structure.md](reference/project-structure.md) | 当前 docs-only 项目结构 |
 | [technical-metrics.md](reference/technical-metrics.md) | 技术指标参考 |
@@ -89,4 +91,3 @@ updated: 2026-04-07
 | [source-map.md](legacy/source-map.md) | 研究文档引用映射 |
 | [phoenix-roadmap.md](archive/plans/phoenix-roadmap.md) | 已归档：旧比喻式路线图 |
 | [mvp-roadmap.md](archive/plans/mvp-roadmap.md) | 已归档：旧 MVP 路线图 |
-

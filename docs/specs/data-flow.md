@@ -1,77 +1,58 @@
 ---
-title: "数据流设计"
+title: "数据流契约"
 status: approved
 created: 2026-04-03
-updated: 2026-04-03
-related: ["six-layer-architecture.md"]
+updated: 2026-04-07
+related:
+  - "../architecture/system-blueprint.md"
+  - "../architecture/core-operational-loops.md"
+  - "./core-data-contracts.md"
 ---
 
-# 数据流设计
+# 数据流契约
 
-以下序列图展示了从用户输入到最终状态更新的完整数据流，涵盖编排、执行、记忆、持久化各环节的交互。
+本文件定义平台级数据流，不再描述旧实现中的局部模块调用关系。
 
-## 完整数据流
+## 平台主数据流
 
 ```mermaid
 sequenceDiagram
-    participant U as 用户
-    participant IF as 交互层
-    participant ORC as 编排器
-    participant LANE as Lane队列
-    participant AGT as 子Agent
-    participant MEM as 记忆系统
-    participant PERS as 持久化
+    participant SRC as Source
+    participant GW as Gateway
+    participant TS as Task Service
+    participant PL as Planner
+    participant EX as Execution Engine
+    participant PG as Policy & Guardrail
+    participant MR as Memory & Retrieval
+    participant OE as Observability & Evaluation
+    participant CC as Cost & Capacity Controller
 
-    U->>IF: 输入任务指令
-    IF->>ORC: 解析并提交任务
-    ORC->>ORC: 任务分解为子任务
-    ORC->>LANE: 提交子任务到队列
-    LANE->>AGT: 调度子Agent执行
-    AGT->>AGT: Agent Loop 执行
-    AGT->>MEM: 查询/更新记忆
-    MEM-->>AGT: 返回相关上下文
-    AGT->>PERS: 追加执行日志
-    PERS-->>AGT: 确认持久化
-    AGT-->>LANE: 返回执行结果
-    LANE-->>ORC: 汇总子任务结果
-    ORC->>MEM: 持久化长期记忆
-    ORC->>PERS: 更新任务状态
-    ORC-->>IF: 推送最终结果
-    IF-->>U: 展示结果/状态更新
+    SRC->>GW: request / event / cron / webhook
+    GW->>TS: create Task
+    TS->>PL: plan request
+    PL->>CC: allocate budget/mode
+    PL->>MR: retrieve context
+    PL->>EX: create Run + execution plan
+    EX->>PG: tool / action request
+    PG-->>EX: allow / deny / require_confirmation
+    EX->>MR: read/write evidence & memory
+    EX->>OE: emit events / metrics / replay data
+    EX->>CC: report cost / latency
+    EX-->>TS: outcome + status update
+    TS-->>GW: final result / blocked state
 ```
 
-## 任务状态机
+## 核心对象流转
 
-```mermaid
-stateDiagram-v2
-    [*] --> Pending: 创建任务
-    Pending --> Running: 开始执行
-    Running --> Suspended: 中断/崩溃
-    Running --> Completed: 执行成功
-    Running --> Failed: 执行失败（不可恢复）
-    Suspended --> Running: 断点续传
-    Suspended --> Failed: 恢复失败
-    Completed --> [*]
-    Failed --> [*]
+- `Gateway` 创建或标准化请求
+- `Task Service` 维护 `Task`
+- `Planner` 生成 `Run` 计划并路由模式
+- `Execution Engine` 产出 `Evidence / Decision / Cost Record`
+- `Observability & Evaluation` 消费运行事件并形成回放与指标
 
-    state Running {
-        [*] --> StepExec
-        StepExec --> ToolCall: 需要工具
-        ToolCall --> StepExec: 工具返回
-        StepExec --> StepDone: 步骤完成
-        StepDone --> StepExec: 下一步
-        StepDone --> [*]: 所有步骤完成
-    }
-```
+## 关键约束
 
-## 持久化格式
+- 任一链路都必须可追踪到 `Task -> Run -> Evidence -> Decision -> Cost Record`
+- 数据流中不能出现“只在日志里存在、没有对象归属”的关键决策
+- 后台与批量任务必须经过与交互任务相同的数据对象体系，只是模式和预算不同
 
-```
-tasks/
-└── {task-id}/
-    ├── state.json          # 任务元数据与状态
-    ├── transcript.jsonl    # 执行日志（追加写入）
-    ├── heartbeat.md        # 人类可读进度看板
-    └── context_snapshot/   # 上下文快照（可选）
-        └── latest.msgpack
-```
