@@ -1,22 +1,25 @@
 # SherryAgent
 
-> 基于 Claude Code 与 OpenClaw 两大 AI Agent 框架优势融合的 Python 多 Agent 框架，用于学习 Agent 开发、毕业项目和简历项目。
+> 基于 Claude Code 与 OpenClaw 两类 Agent 优势融合的 Hybrid Platform 项目蓝图。
 
-## Mode: docs-only (Egg)
+## Mode: docs-only / planning-first
 
-本仓库当前处于 **docs-only** 阶段：实现代码已被“毁灭”以便重生。你不应尝试运行 CLI、测试、类型检查等命令。
+本仓库当前处于 **docs-only** 阶段。你不应尝试恢复旧实现，也不应把历史 `mvp-*`、`phoenix-roadmap` 作为当前执行入口。
 
 ## How To Work Here
 
-### 1) 先读（入口）
+### 1) 先读
 
-1. `docs/INDEX.md`（Story Suite 入口）
-2. `docs/vision/north-star.md`（北极星：成功指标与失败边界）
-3. `docs/guides/spec-authority.md`（双权威与冲突裁决）
+1. `docs/vision/product-charter.md`
+2. `docs/architecture/system-blueprint.md`
+3. `docs/architecture/core-operational-loops.md`
+4. `docs/specs/core-data-contracts.md`
+5. `docs/plans/implementation-program.md`
+6. `docs/guides/spec-authority.md`
 
-### 2) 再做（执行权威）
+### 2) 再做
 
-任何新增/修改都必须先落到 `.trae/specs/*`（spec/tasks/checklist），然后同步更新 `docs/*` 的契约与叙事口径。
+任何非 trivial 变更都必须先落到 `.trae/specs/*`，再同步更新 `docs/*` 的系统契约与产品口径。
 
 ## Stack
 
@@ -35,83 +38,68 @@
 
 ## Architecture
 
-SherryAgent 采用六层融合架构：
+SherryAgent 保留六层能力视角，但实现计划按公司级模块边界组织：
 
 ```
-交互层 (CLI/WebSocket/HTTP)
-    ↓
-编排层 (Orchestrator/Agent Teams)
-    ↓
-执行层 (Agent Loop/Fork/Lane Queue)
-    ↓
-自主运行层 (Heartbeat/Cron/Recovery)
-    ↓
-记忆层 (Short-term/Long-term/Bridge)
-    ↓
-基础设施层 (Permissions/Sandbox/MCP/Skills)
+Gateway
+  -> Task Service
+  -> Planner
+  -> Execution Engine
+  -> Memory & Retrieval
+  -> Policy & Guardrail
+  -> Scheduler & Trigger
+  -> Observability & Evaluation
+  -> Cost & Capacity Controller
+  -> Release & Ops
 ```
 
-详见 [ARCHITECTURE.md](ARCHITECTURE.md) 和 [docs/specs/six-layer-architecture.md](docs/specs/six-layer-architecture.md)。
-
-## Conventions
-
-- 命名规范：[docs/standard/naming-conventions.md](docs/standard/naming-conventions.md)
-- 编码标准：[docs/standard/coding-standards.md](docs/standard/coding-standards.md)
-- 设计原则：[docs/standard/design-principles.md](docs/standard/design-principles.md)
+详见 `docs/architecture/system-blueprint.md` 与 `docs/architecture/module-map.md`。
 
 ## Working Rules
 
-### Spec Authority（必须遵守）
+### Spec Authority
 
 SherryAgent 采用 **`.trae/specs` + `docs/` 双权威**：
 
-- **`.trae/specs/*`：开发执行权威**（做什么、验收是什么、任务如何拆分）
-- **`docs/*`：系统契约与叙事权威**（长期结构、术语、安全原则、Story 口径）
-- **OpenSpec：方法论参考**（文档写法/模板参考，不作为项目权威规范来源）
+- `.trae/specs/*`：开发执行权威
+- `docs/*`：系统契约与产品/运营口径权威
+- `docs/stories/*`：验收与演示套件，不是顶层规划主轴
+- OpenSpec：仅方法论参考
 
-冲突裁决写在：[docs/guides/spec-authority.md](docs/guides/spec-authority.md)
+冲突裁决见：`docs/guides/spec-authority.md`
 
-### Definition of Done（文档版）
+### Current Planning Axes
 
-任何非 trivial 变更（新增 Story、修改系统契约、安全策略、流程）完成时，至少满足：
+当前执行主线固定为 7 条：
 
-- `.trae/specs`：对应 spec/tasks/checklist 已更新
-- `docs/`：相关 Story/契约文档已更新且术语一致
-- `docs/INDEX.md`：能导航到新增/修改的入口
+- `platform-foundation`
+- `runtime-orchestration`
+- `memory-knowledge`
+- `tooling-integration`
+- `quality-evaluation`
+- `cost-latency-ops`
+- `release-program`
 
-### Phoenix 开发顺序（Story 驱动）
+### Definition of Done
 
-以 5 个 Story 为计划主轴，统一由 `.trae/specs/story-*/` 驱动。
+任何非 trivial 计划或契约变更至少满足：
 
-### 安全红线
+- `.trae/specs` 的相关 `spec/tasks/checklist` 已更新
+- `docs/` 的相关蓝图、契约、索引已更新
+- 关键数据对象、指标口径、链路状态机没有留给实现者二次决定
 
-- 禁止执行 `rm -rf /`、`DROP TABLE` 等破坏性命令
-- 禁止硬编码密钥、密码、Token
-- 禁止在日志中输出敏感信息
-- 所有工具调用必须经过权限检查
+### Safety Red Lines
 
-## Known Pitfalls
+- 禁止把高风险动作默认自动化
+- 禁止绕过权限、审计、确认、沙箱讨论实现
+- 禁止用“先跑通再补治理”掩盖系统边界缺失
+- 禁止把 Story 文档当作架构主计划替代物
 
-- **asyncio 陷阱**：避免在异步函数中使用阻塞操作，使用 `asyncio.to_thread()` 包装同步调用
-- **Token 消耗失控**：OpenClaw 的心跳循环可能导致 Token 消耗"滚雪球"式增长，需要设置预算上限
-- **权限过于严格**：六层权限管道可能影响自动化效率，需要根据场景调整权限模式
-- **记忆检索冗余**：全量检索可能注入冗余信息，需要结合压缩策略控制上下文
+## Recommended Reading Path
 
-## 文档索引
+1. `docs/vision/product-charter.md`
+2. `docs/architecture/module-map.md`
+3. `docs/architecture/quality-vs-latency-vs-cost.md`
+4. `docs/plans/implementation-program.md`
+5. `docs/stories/`（仅用于验收视角）
 
-完整文档索引见 [docs/INDEX.md](docs/INDEX.md)。
-
-## 推荐阅读路径（先故事，后契约）
-
-1. [docs/vision/north-star.md](docs/vision/north-star.md)
-2. [docs/INDEX.md](docs/INDEX.md) 的 Story Suite（5 个故事）
-3. [docs/reference/glossary.md](docs/reference/glossary.md)
-4. [docs/specs/six-layer-architecture.md](docs/specs/six-layer-architecture.md)
-
-| 目录 | 内容 |
-|------|------|
-| [docs/standard/](docs/standard/) | 核心原则与标准 |
-| [docs/specs/](docs/specs/) | 技术规范 |
-| [docs/reference/](docs/reference/) | API 与配置参考 |
-| [docs/plans/](docs/plans/) | 实施计划 |
-| [docs/research/](docs/research/) | 研究分析 |

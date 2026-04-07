@@ -2,7 +2,7 @@
 
 ## Overview
 - **Summary**: 在 CLI 叙事下实现“需求澄清 -> 设计 -> 实施 -> Review”的严谨工程闭环（docs-only 阶段先固化契约）。
-- **Purpose**: 支撑面试故事线 01，并作为后续 Chick 实现的唯一契约来源。
+- **Purpose**: 作为验收与演示套件，验证公司级计划中的“交互式开发协作链路”是否闭环。
 - **Related Story Doc**: `docs/stories/story-01-rigorous-dev-copilot.md`
 
 ## Goals
@@ -16,4 +16,3 @@
 ## Acceptance Criteria（文档验收）
 - Story 文档包含完整模板内容（演示脚本/输出契约/权限/降级/六层映射）
 - 输出契约字段明确到可被“检查是否合格”（例如必须字段列表）
-

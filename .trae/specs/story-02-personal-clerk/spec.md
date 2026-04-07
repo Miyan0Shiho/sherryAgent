@@ -2,6 +2,7 @@
 
 ## Overview
 - **Summary**: 安全受控的重复劳动与条件触发个人助理（docs-only 阶段先固化契约与边界）。
+- **Purpose**: 作为验收与演示套件，验证后台重复事务链路与安全边界。
 - **Related Story Doc**: `docs/stories/story-02-personal-clerk.md`
 
 ## Goals
@@ -16,4 +17,3 @@
 ## Acceptance Criteria
 - Story 文档具备可执行的条件触发演示脚本
 - 输出契约包含 actions_planned/actions_executed/audit 字段
-

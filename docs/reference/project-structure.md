@@ -3,50 +3,63 @@ title: "项目结构"
 status: approved
 created: 2026-04-03
 updated: 2026-04-07
-related: ["tech-stack.md", "../specs/six-layer-architecture.md"]
+related: ["tech-stack.md", "../architecture/system-blueprint.md"]
 ---
 
 # 项目结构
 
-> 本仓库当前处于 **docs-only（Egg）**：不包含可运行实现代码。项目结构描述的是“文档即产品/契约”与“执行计划即权威”的形态。
+> 本仓库当前处于 **docs-only / planning-first** 阶段。项目结构反映的是公司级计划体系与系统契约，不是旧实现目录。
 
 ```
 sherry-agent/
-├── README.md                   # 项目说明（docs-only 入口）
-├── AGENTS.md                   # AI Agent 工作规则（docs-only）
-├── ARCHITECTURE.md             # 架构概述（六层口径）
-├── pyproject.toml              # 占位元数据（docs-only 阶段不承诺可运行）
-├── docs/                       # 文档（唯一产品与系统契约）
-│   ├── INDEX.md                # 文档索引（Story Suite 为第一入口）
-│   ├── vision/                 # 北极星与愿景
-│   ├── stories/                # 5 个官方 Story 套件
-│   ├── legacy/                 # 实现蒸馏承接层（无源码）
-│   ├── standard/               # 标准与规范
-│   ├── guides/                 # 操作指南（含双权威规则）
-│   ├── reference/              # 参考（术语表等）
-│   ├── specs/                  # 技术规范（契约口径）
-│   ├── plans/                  # Phoenix 重生计划
-│   ├── research/               # 历史研究（去代码链接后保留结论）
-│   └── archive/                # 历史资料归档
-└── .trae/                      # 执行计划（唯一开发执行权威）
+├── README.md                        # 项目总入口
+├── AGENTS.md                        # 后续 Agent 的工作规则
+├── ARCHITECTURE.md                  # 六层能力的高层说明
+├── pyproject.toml                   # 占位元数据
+├── docs/
+│   ├── INDEX.md                     # 文档总索引
+│   ├── vision/                      # 产品章程、北极星
+│   ├── architecture/                # 系统蓝图、运行模式、模块图、扩展策略
+│   ├── specs/                       # 数据契约与技术规范
+│   ├── plans/                       # 统一实现总计划
+│   ├── stories/                     # 验收与演示套件
+│   ├── guides/                      # 流程、治理、规范权威
+│   ├── reference/                   # 术语、结构、指标等参考资料
+│   ├── research/                    # 历史研究分析
+│   ├── legacy/                      # 已删除实现的能力快照
+│   └── archive/                     # 已归档的旧路线图与历史报告
+└── .trae/
     └── specs/
-        ├── phoenix-roadmap/    # Egg -> Chick -> Phoenix 汇总 Gate
-        ├── story-01-*/         # 每个 Story 的 spec/tasks/checklist
-        └── archive/            # 历史计划（pre-phoenix）
+        ├── platform-foundation/
+        ├── runtime-orchestration/
+        ├── memory-knowledge/
+        ├── tooling-integration/
+        ├── quality-evaluation/
+        ├── cost-latency-ops/
+        ├── release-program/
+        ├── story-01-*/
+        ├── story-02-*/
+        ├── story-03-*/
+        ├── story-04-*/
+        ├── story-05-*/
+        └── archive/
 ```
 
 ## 目录职责说明
 
 | 目录 | 职责 |
 |------|------|
-| `docs/stories/` | 面试入口与场景闭环契约（5 个官方 Story） |
-| `docs/vision/` | 北极星：融合命题、成功指标、失败边界 |
-| `docs/specs/` | 技术契约：六层架构、权限、数据流、可观测性等 |
-| `docs/standard/` | 文档与工程写作标准（模板、命名等） |
-| `docs/guides/` | 操作与流程指南（含双权威与冲突裁决） |
-| `docs/legacy/` | 已删除实现的“能力快照”承接层（只允许锚点引用，不含源码） |
-| `docs/research/` | 历史研究与分析（已去除对 `src/`、`tests/` 等已删除路径的引用） |
-| `docs/plans/` | Phoenix 重生计划（Egg -> Chick -> Phoenix） |
-| `.trae/specs/` | 唯一开发执行权威（做什么、验收是什么、如何拆分） |
+| `docs/vision/` | 产品定位、目标用户、成功定义、长期命题 |
+| `docs/architecture/` | 系统上下文、模块边界、运行模式、链路与扩展设计 |
+| `docs/specs/` | 数据对象、技术契约、关键模块规范 |
+| `docs/plans/` | 顶层实现计划与交付节奏 |
+| `docs/stories/` | Story 验收与演示场景 |
+| `docs/legacy/` | 历史实现的能力锚点与引用映射 |
+| `.trae/specs/platform-foundation/` | 平台底座建设计划 |
+| `.trae/specs/runtime-orchestration/` | 运行时、编排与执行计划 |
+| `.trae/specs/memory-knowledge/` | 记忆与知识体系计划 |
+| `.trae/specs/tooling-integration/` | 工具协议与外部集成计划 |
+| `.trae/specs/quality-evaluation/` | 评测、回归、验证计划 |
+| `.trae/specs/cost-latency-ops/` | 成本、性能、观测、SRE 计划 |
+| `.trae/specs/release-program/` | 项目里程碑、门禁、上线治理计划 |
 
-> 说明：六层架构中的“交互/编排/执行/自主/记忆/基础设施”在 docs-only 阶段以 **契约文档** 表达，不以代码目录结构表达。

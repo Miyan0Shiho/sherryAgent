@@ -2,6 +2,7 @@
 
 ## Overview
 - **Summary**: 上线后巡检/告警/证据收集/排障 runbook + 高风险确认与回滚计划（docs-only 固化契约）。
+- **Purpose**: 作为验收与演示套件，验证运维巡检与事故响应链路。
 - **Related Story Doc**: `docs/stories/story-03-ops-sentinel-incident-responder.md`
 
 ## Goals
@@ -12,4 +13,3 @@
 ## Acceptance Criteria
 - Incident Report 包含 hypotheses+confidence、runbook、actions_requiring_confirmation、rollback_plan
 - 风险分级明确且 CRITICAL 默认拒绝
-

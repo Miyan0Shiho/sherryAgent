@@ -8,10 +8,13 @@ related:
   - "../standard/story-template.md"
   - "../specs/agent-loop.md"
   - "../specs/permission-system.md"
-  - "../../.trae/specs/mvp-1-core-agent-loop/spec.md"
+  - "../../.trae/specs/runtime-orchestration/spec.md"
+  - "../../.trae/specs/quality-evaluation/spec.md"
 ---
 
 # Story-01: Rigorous Dev Copilot（严谨开发助手）
+
+> 角色说明：本文档是 **验收与演示套件**，用于验证“严谨开发协作”链路是否闭环，不承担顶层项目规划职责。
 
 ## Goal
 
@@ -76,4 +79,3 @@ related:
 - 自主运行层：可选的定期工程健康报告。
 - 记忆层：沉淀“工程决策/常见错误/最佳实践”到长期记忆，减少返工率。
 - 基础设施层：权限管道、审计、沙箱是硬门禁。
-
