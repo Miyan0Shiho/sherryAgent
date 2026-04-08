@@ -1,5 +1,11 @@
 # Quality Evaluation Tasks
 
+## Implementation Sync 2026-04-08
+
+- [x] `tests/` 已覆盖 5 个 Story、contract、runtime、policy、persistence、memory、cost、governance
+- [x] `conftest.py` 与 `tests/support/metrics.py` 已输出可量化 metrics summary
+- [x] 最新全量验证结果为 `50 passed, 1 xfailed`，coverage XML 与 metrics JSON 已生成
+
 ## Phase 0: Evaluation Scope Alignment
 
 ### Work Packages

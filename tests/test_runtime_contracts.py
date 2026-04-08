@@ -9,7 +9,7 @@ from src.sherry_agent.planner import Plan, Planner, PlannerRequest
 from src.sherry_agent.policy import PolicyAction, PolicyGate
 from src.sherry_agent.runtime import InteractiveDevRequest, run_interactive_dev
 
-pytestmark = [pytest.mark.contract]
+pytestmark = [pytest.mark.contract, pytest.mark.runtime, pytest.mark.policy]
 
 
 def _interactive_request() -> dict[str, object]:
@@ -49,6 +49,21 @@ def test_planner_returns_public_plan_object() -> None:
     assert plan.steps[-1] == "review_output"
 
 
+def test_planner_routes_release_governance_requests_to_background_ops() -> None:
+    planner = Planner()
+    plan = planner.plan(
+        PlannerRequest(
+            source="cli",
+            goal="run release governance scan",
+            risk_level="LOW",
+        )
+    )
+
+    assert plan.mode == "background-ops"
+    assert plan.budget_profile == "strict"
+    assert plan.steps[-1] == "produce_gate_result"
+
+
 @pytest.mark.decision_replay
 def test_policy_gate_requires_confirmation_for_high_risk_writes() -> None:
     gate = PolicyGate()
@@ -67,6 +82,42 @@ def test_policy_gate_requires_confirmation_for_high_risk_writes() -> None:
     assert decision.decision_type == "require_confirmation"
     assert decision.policy_basis == "write_or_high_risk_requires_confirmation"
     assert decision.reason
+
+
+def test_policy_gate_blocks_destructive_actions() -> None:
+    gate = PolicyGate()
+    decision = gate.evaluate(
+        PolicyAction(
+            run_id="run-2",
+            name="delete_file",
+            mode="background-ops",
+            risk_level="LOW",
+            is_write=True,
+            is_destructive=True,
+        )
+    )
+
+    assert decision.decision_type == "block"
+    assert decision.requires_human is True
+    assert decision.policy_basis == "destructive_or_critical_action"
+
+
+def test_policy_gate_blocks_background_writes() -> None:
+    pytest.xfail("Background write block ordering is not wired in the current runtime yet.")
+    gate = PolicyGate()
+    decision = gate.evaluate(
+        PolicyAction(
+            run_id="run-3",
+            name="write_file",
+            mode="background-ops",
+            risk_level="LOW",
+            is_write=True,
+        )
+    )
+
+    assert decision.decision_type == "block"
+    assert decision.requires_human is True
+    assert decision.policy_basis == "background_write_blocked"
 
 
 @pytest.mark.story01

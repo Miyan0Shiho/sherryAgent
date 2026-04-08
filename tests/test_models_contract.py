@@ -7,7 +7,7 @@ import pytest
 
 from src.sherry_agent import models
 
-pytestmark = [pytest.mark.contract]
+pytestmark = [pytest.mark.contract, pytest.mark.persistence]
 
 
 EXPECTED_TASK_FIELDS = {
@@ -34,6 +34,7 @@ EXPECTED_RUN_FIELDS = {
     "ended_at",
     "outcome",
     "status",
+    "mode",
 }
 
 EXPECTED_EVIDENCE_FIELDS = {
@@ -114,6 +115,33 @@ def test_status_constants_cover_the_expected_state_machine() -> None:
     assert EXPECTED_STATUS_VALUES <= values
 
 
+def test_task_and_run_reject_invalid_state_values() -> None:
+    task = models.Task(
+        source="cli",
+        goal="run Story-01",
+        priority=1,
+        risk_level="LOW",
+        budget_profile="balanced",
+        mode="interactive-dev",
+        status="created",
+        idempotency_key="idem-3",
+    )
+    with pytest.raises(ValueError):
+        task.transition("not-a-state")
+
+    run = models.Run(
+        task_id=task.task_id,
+        plan_version="plan-1",
+        model_profile="baseline-fast",
+        toolset=["repo.read"],
+        outcome="planned",
+        status="running",
+        mode="interactive-dev",
+    )
+    with pytest.raises(ValueError):
+        run.finish(outcome="completed", status="not-a-state")
+
+
 def test_core_objects_round_trip_relationships() -> None:
     task = models.Task(
         task_id="task-1",
@@ -138,6 +166,7 @@ def test_core_objects_round_trip_relationships() -> None:
         ended_at=_build_sample_time(),
         outcome="ok",
         status="completed",
+        mode="interactive-dev",
     )
     evidence = models.Evidence(
         evidence_id="ev-1",
@@ -201,6 +230,7 @@ def test_state_transition_helpers_update_status_and_timestamps() -> None:
         toolset=["repo.read"],
         outcome="planned",
         status="running",
+        mode="interactive-dev",
     )
     assert run.ended_at is None
     run.finish(outcome="completed", status="completed")

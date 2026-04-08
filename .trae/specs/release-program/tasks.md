@@ -1,5 +1,11 @@
 # Release Program Tasks
 
+## Implementation Sync 2026-04-08
+
+- [x] 真实 GitHub work-unit issues `#3-#13` 已创建
+- [x] 实验期分支规则、PR 模板和 governance checks 已对齐 `codex/multi-agent-test/<issue-id>-<topic>`
+- [x] `src/sherry_agent/governance.py` 与 `scripts/ci/pr_governance_checks.py` 已形成 release gate + quant summary 检查闭环
+
 ## Phase 0: Program Alignment
 
 ### Work Packages

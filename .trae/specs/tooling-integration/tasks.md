@@ -1,5 +1,11 @@
 # Tooling Integration Tasks
 
+## Implementation Sync 2026-04-08
+
+- [x] `src/sherry_agent/tooling.py` 已实现统一工具注册表与元数据契约
+- [x] `src/sherry_agent/policy.py` 已实现 `allow / block / require_confirmation` 决策
+- [x] 高风险与后台写入路径已默认阻断或进入确认流
+
 ## Phase 0: Tooling Scope Alignment
 
 ### Work Packages

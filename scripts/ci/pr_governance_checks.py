@@ -27,6 +27,7 @@ RISK_LABEL_PREFIX = "risk:"
 AXIS_LABEL_PREFIX = "axis:"
 STATUS_IN_REVIEW = "status:in_review"
 BRANCH_PATTERN = re.compile(r"^codex/multi-agent-test/[0-9]+-[A-Za-z0-9][A-Za-z0-9-]*$")
+QUANT_SUMMARY_PATTERN = re.compile(r"(?im)^(?:quant_summary:|#+\s*quantitative summary\b)")
 
 
 @dataclass
@@ -143,6 +144,10 @@ def find_label_with_prefix(labels: list[str], prefix: str) -> str | None:
     return None
 
 
+def has_quant_summary(body: str) -> bool:
+    return bool(QUANT_SUMMARY_PATTERN.search(body))
+
+
 def check_spec_docs_sync(ctx: PRContext) -> None:
     spec_touched = any(p.startswith(".trae/specs/") for p in ctx.changed_files)
     contract_docs_touched = any(
@@ -200,6 +205,11 @@ def check_gate_eligibility(ctx: PRContext) -> None:
         fail(
             "Gate Eligibility failed: PR body misses required governance fields: "
             + ", ".join(missing_fields)
+        )
+
+    if not has_quant_summary(ctx.body):
+        fail(
+            "Gate Eligibility failed: PR body misses `quant_summary` / quantitative summary section."
         )
 
     gate_label = next((label for label in ctx.labels if label in GATE_LABELS), None)

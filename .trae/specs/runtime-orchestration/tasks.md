@@ -1,5 +1,13 @@
 # Runtime Orchestration Tasks
 
+## Implementation Sync 2026-04-08
+
+- [x] `src/sherry_agent/runtime.py` 已实现 `Interactive Dev Loop`
+- [x] `src/sherry_agent/autonomous.py` 已实现 `Autonomous Background Loop` 与 `background-ops` 事故路径
+- [x] `src/sherry_agent/bulk.py` 已实现 `Bulk Research / Analysis Loop`
+- [x] `src/sherry_agent/governance.py` 已实现 `Repo / Release Governance Loop`
+- [x] `src/sherry_agent/cli.py` 已暴露 `story01` 到 `story05` 的正式 CLI 入口
+
 ## Phase 0: Runtime Scope Alignment
 
 ### Work Packages

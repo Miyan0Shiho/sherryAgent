@@ -1,5 +1,11 @@
 # Cost Latency Ops Tasks
 
+## Implementation Sync 2026-04-08
+
+- [x] `src/sherry_agent/cost.py` 已实现 `strict / balanced / premium` 预算档位与降级判定
+- [x] 关键 run 已记录 latency、tool_calls、estimated_cost、degraded_mode
+- [x] metrics summary 已输出 story、runtime、policy、memory、cost 统计字段
+
 ## Phase 0: Operating Model Alignment
 
 ### Work Packages

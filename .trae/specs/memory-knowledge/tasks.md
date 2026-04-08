@@ -1,5 +1,11 @@
 # Memory Knowledge Tasks
 
+## Implementation Sync 2026-04-08
+
+- [x] `src/sherry_agent/memory.py` 已实现基于 sqlite 的写入、检索、压缩、TTL 清理
+- [x] `MemoryRecord` 已支持 scope、version、TTL、summary 压缩与 evidence 回链字段
+- [x] `Story-02/03/04/05` 已接入 session memory 或 release memory 写入
+
 ## Phase 0: Knowledge Scope Alignment
 
 ### Work Packages

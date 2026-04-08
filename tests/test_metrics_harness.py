@@ -40,9 +40,17 @@ def test_build_metrics_summary_aggregates_marker_counts(tmp_path: Path) -> None:
         duration_seconds=1.2345,
         marker_counts={
             "story01_passed": 2,
+            "story02_passed": 1,
+            "story03_passed": 1,
+            "story04_passed": 1,
             "story05_passed": 1,
             "governance_passed": 3,
             "contract_passed": 4,
+            "runtime_passed": 2,
+            "policy_passed": 2,
+            "persistence_passed": 2,
+            "memory_passed": 1,
+            "cost_passed": 1,
             "decision_replay_passed": 2,
         },
         coverage_xml_path=coverage_xml,
@@ -50,9 +58,19 @@ def test_build_metrics_summary_aggregates_marker_counts(tmp_path: Path) -> None:
 
     assert summary.tests_collected == 5
     assert summary.tests_passed == 4
-    assert summary.story_cases_passed == 3
+    assert summary.story01_cases_passed == 2
+    assert summary.story02_cases_passed == 1
+    assert summary.story03_cases_passed == 1
+    assert summary.story04_cases_passed == 1
+    assert summary.story05_cases_passed == 1
+    assert summary.story_cases_passed == 6
     assert summary.governance_checks_passed == 3
     assert summary.contract_checks_passed == 4
+    assert summary.runtime_checks_passed == 2
+    assert summary.policy_checks_passed == 2
+    assert summary.persistence_checks_passed == 2
+    assert summary.memory_checks_passed == 1
+    assert summary.cost_checks_passed == 1
     assert summary.decision_replay_coverage == 50.0
     assert summary.coverage_pct == 90.0
 

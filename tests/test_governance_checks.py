@@ -45,6 +45,25 @@ docs_update: updated
 gate_impact: gate:G1
 evidence: tests
 rollback_plan: revert commit
+## Quantitative Summary
+- tests_passed: 1
+""",
+    )
+    checks.check_gate_eligibility(ctx)
+
+
+def test_gate_eligibility_accepts_quant_summary_field() -> None:
+    ctx = _context(
+        labels=["gate:G1"],
+        body="""
+linked_issue: #1
+contract_impact: yes
+spec_update: updated
+docs_update: updated
+gate_impact: gate:G1
+evidence: tests
+rollback_plan: revert commit
+quant_summary: tests_passed=1, coverage_pct=90.0
 """,
     )
     checks.check_gate_eligibility(ctx)
@@ -61,6 +80,8 @@ docs_update: updated
 gate_impact: gate:G1
 evidence: tests
 rollback_plan: revert commit
+## Quantitative Summary
+- tests_passed: 1
 """,
         branch_name="feature/runtime-orchestration",
     )

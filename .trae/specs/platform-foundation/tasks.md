@@ -1,5 +1,12 @@
 # Platform Foundation Tasks
 
+## Implementation Sync 2026-04-08
+
+- [x] `src/sherry_agent/models.py` 已实现 `Task / Run / Evidence / Decision / CostRecord / Plan / ToolCall / MemoryRecord / TriggerEvent / ReleaseGateResult`
+- [x] `src/sherry_agent/settings.py` 已实现分层配置加载入口
+- [x] `src/sherry_agent/storage.py` 与 `src/sherry_agent/task_service.py` 已实现 sqlite 持久化与恢复编排
+- [x] foundation 相关测试与全量回归已通过，量化结果写入 `build/test-metrics.json`
+
 ## Phase 0: Alignment
 
 ### Work Packages
