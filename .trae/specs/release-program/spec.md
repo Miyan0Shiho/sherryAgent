@@ -24,8 +24,10 @@
 - 风险台账、阻断升级机制和阶段性决策规则
 - Story 验收、质量回归、成本稳定性和运维准备的综合出口条件
 - 供未来真正排期与项目例会使用的项目程序定义
+- “是否开始开发”的正式 gate 决策文档，以及 `G1-G4` 当前状态与缺口结论
 - 面向 GitHub 的并行治理资产：Issue 模板、PR 模板、CODEOWNERS、门禁检查工作流与脚本
 - 面向多对话协作的角色控制面：角色手册、prompt 模板、交接契约
+- 面向多子 Agent 开发 ready 的总控资产：`Program Conductor`、phase program、Story rollout records
 
 ## Dependencies
 ### Upstream
@@ -61,6 +63,7 @@
 - 多对话并行必须采用 `Issue -> Branch -> PR` 的单元化模式，且一个 Work Unit 只能对应一个活跃 PR
 - `contract-impacting` 变更必须触发双权威审查（spec authority + docs authority）
 - 多对话角色协作必须显式记录 `role_owner -> next_role -> handoff_ready`
+- 多子 Agent 开发 ready 必须显式定义 `Program Conductor State` 和 `Story Rollout Record`
 
 ## Blocking Conditions
 - 7 条主线之间仍然存在隐性依赖，无法形成清晰的交付顺序
@@ -74,7 +77,9 @@
 - 后续可以直接在本主线基础上扩展 master program、里程碑图和周度执行节奏
 - GitHub 治理控制面可运行，且 4 个 required checks 可用于保护 `main`
 - 角色文档包可直接驱动不同对话承担不同职责，且不与双权威冲突
+- `Program Conductor`、phase program、首批 rollout 样板已定稿，可支撑多子 Agent 接力开发
 
 ## Acceptance Criteria
 - 阶段、依赖、门禁和风险管理都可直接指导后续实施
 - 不再依赖 Story 或旧路线图做顶层排期
+- 当前是否允许进入实现阶段，必须能由正式 gate 决策文档直接回答

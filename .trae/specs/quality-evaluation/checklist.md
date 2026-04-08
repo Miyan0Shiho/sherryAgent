@@ -31,6 +31,7 @@
 - [ ] 每个 Story 的最低可接受质量、成本和风险表现已定稿
 - [ ] 评测失败阻断规则已定稿
 - [ ] 该主线完成证明已准备好供 `G3 Governance Gate` 使用
+- [ ] `gate-readiness-evidence.md` 已给出 `quality-evaluation` 对 `G3` 的正式证据
 
 ## Blocking Conditions
 

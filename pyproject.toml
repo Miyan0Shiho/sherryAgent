@@ -10,11 +10,37 @@ authors = [
 ]
 keywords = ["ai", "agent", "llm", "claude", "openai"]
 
-# docs-only（Egg）阶段占位：
-# - 不保留可运行实现代码
-# - 不提供 scripts/依赖/测试工具链配置
-dependencies = []
+dependencies = [
+    "click>=8.1",
+]
+
+[project.scripts]
+sherry-agent = "sherry_agent.cli:main"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.2",
+    "pytest-cov>=5.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "contract: contract-level schema and interface checks",
+    "governance: governance and policy checks",
+    "story01: Story-01 acceptance and runtime coverage",
+    "story05: Story-05 acceptance and runtime coverage",
+    "metrics: measurable harness helper checks",
+    "decision_replay: tests that exercise evidence/decision replay assertions",
+]
 
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

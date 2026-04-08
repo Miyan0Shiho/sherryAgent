@@ -26,6 +26,7 @@ GATE_LABELS = {"gate:G1", "gate:G2", "gate:G3", "gate:G4"}
 RISK_LABEL_PREFIX = "risk:"
 AXIS_LABEL_PREFIX = "axis:"
 STATUS_IN_REVIEW = "status:in_review"
+BRANCH_PATTERN = re.compile(r"^codex/multi-agent-test/[0-9]+-[A-Za-z0-9][A-Za-z0-9-]*$")
 
 
 @dataclass
@@ -35,6 +36,7 @@ class PRContext:
     body: str
     labels: list[str]
     changed_files: list[str]
+    branch_name: str
 
 
 def info(msg: str) -> None:
@@ -107,6 +109,12 @@ def parse_pr_context() -> PRContext:
     number = pr.get("number")
     title = pr.get("title") or ""
     body = pr.get("body") or ""
+    branch_name = (
+        pr.get("head", {}).get("ref")
+        or os.getenv("GITHUB_HEAD_REF")
+        or os.getenv("GITHUB_REF_NAME")
+        or ""
+    )
 
     repo = os.getenv("GITHUB_REPOSITORY")
     if repo and number:
@@ -120,6 +128,7 @@ def parse_pr_context() -> PRContext:
         body=body,
         labels=labels,
         changed_files=changed_files,
+        branch_name=branch_name,
     )
 
 
@@ -196,6 +205,16 @@ def check_gate_eligibility(ctx: PRContext) -> None:
     gate_label = next((label for label in ctx.labels if label in GATE_LABELS), None)
     if not gate_label:
         fail("Gate Eligibility failed: missing one `gate:G1~G4` label.")
+
+    if ctx.number is not None:
+        if not ctx.branch_name:
+            fail("Gate Eligibility failed: missing PR head branch name.")
+
+        if not BRANCH_PATTERN.match(ctx.branch_name):
+            fail(
+                "Gate Eligibility failed: branch must follow "
+                "`codex/multi-agent-test/<issue-id>-<topic>`."
+            )
 
     if has_label(ctx.labels, "type:contract-change"):
         risk_label = find_label_with_prefix(ctx.labels, RISK_LABEL_PREFIX)

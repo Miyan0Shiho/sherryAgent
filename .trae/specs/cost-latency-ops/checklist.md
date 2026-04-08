@@ -32,6 +32,7 @@
 - [ ] Story 默认预算和评测消费关系已定稿
 - [ ] `quality-evaluation` 可直接消费本主线成本、延迟和容量指标
 - [ ] 该主线完成证明已准备好供 `G3 Governance Gate` 使用
+- [ ] `gate-readiness-evidence.md` 已给出 `cost-latency-ops` 对 `G3` 的正式证据
 
 ## Blocking Conditions
 

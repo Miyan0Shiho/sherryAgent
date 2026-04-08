@@ -24,6 +24,7 @@
 - `baseline vs current` 对比规则与默认基线解释
 - `golden tasks`、`failure corpus`、`policy regression cases` 的维护要求
 - 与 Story 套件和发布门禁联动的质量阻断规则
+- `G3 Governance Gate` 的正式输入证明
 
 ## Dependencies
 ### Upstream

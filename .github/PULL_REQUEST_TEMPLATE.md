@@ -2,10 +2,12 @@
 
 - linked_issue: Closes #<issue-id>
 - change_type: `<axis-task | contract-change | conflict-decision>`
+- branch_name: `codex/multi-agent-test/<issue-id>-<topic>`
 
 ## Governance Fields (Required)
 
 - linked_issue: 
+- branch_name: 
 - contract_impact: `<yes/no>`
 - spec_update: `<what changed in .trae/specs/*>`
 - docs_update: `<what changed in docs/*>`
@@ -26,7 +28,7 @@
 
 ## Validation Checklist
 
-- [ ] I followed branch naming: `codex/<axis>/<issue-id>-<topic>`
+- [ ] I followed branch naming: `codex/multi-agent-test/<issue-id>-<topic>`
 - [ ] If `.trae/specs/*` changed, I also updated related `docs/*`
 - [ ] I updated `docs/INDEX.md` for any non-trivial doc entry change
 - [ ] I did not bypass dual authority rules in `docs/guides/spec-authority.md`

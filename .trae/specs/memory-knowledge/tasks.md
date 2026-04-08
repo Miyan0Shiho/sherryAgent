@@ -67,3 +67,4 @@
 ### Deliverables
 - [ ] D4-1: Story-Memory 映射矩阵
 - [ ] D4-2: capability gate 输入说明
+- [ ] D4-3: `docs/plans/gate-readiness-evidence.md` 中的 `G2 / memory-knowledge` 证据段

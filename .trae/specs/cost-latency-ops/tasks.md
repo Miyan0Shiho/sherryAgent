@@ -69,3 +69,4 @@
 ### Deliverables
 - [ ] D4-1: Story 成本与延迟矩阵
 - [ ] D4-2: governance gate 输入说明
+- [ ] D4-3: `docs/plans/gate-readiness-evidence.md` 中的 `G3 / cost-latency-ops` 证据段

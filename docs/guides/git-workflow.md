@@ -22,7 +22,7 @@ related:
 ## 分支策略
 
 - `main`：稳定主线，只接收经过审查的文档或实现变更。
-- `codex/*` 或 `feat/*`：功能分支、计划分支、文档重构分支。
+- `codex/multi-agent-test/<issue-id>-<topic>`：实验期多子 Agent 的强制分支前缀，首批实现 Work Unit 必须使用。
 - `release/*`：仅在未来恢复实现并进入发布流程后使用。
 - `hotfix/*`：仅在未来出现生产级紧急修复时使用。
 
@@ -31,7 +31,7 @@ related:
 - 所有结构性变更都走独立分支。
 - 文档体系重构和历史资料归档不要混在同一个提交里。
 - 提交信息必须说明“变更了什么口径”，而不是只写文件名。
-- 分支命名推荐：`codex/<axis>/<issue-id>-<topic>`。
+- 分支命名必须满足：`codex/multi-agent-test/<issue-id>-<topic>`。
 - PR 标题推荐：`[axis/subdomain] short topic`。
 
 ## 提交粒度

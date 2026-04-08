@@ -83,3 +83,4 @@
 ### Deliverables
 - [ ] D4-1: 下游采用矩阵
 - [ ] D4-2: foundation gate 通过说明
+- [ ] D4-3: `docs/plans/gate-readiness-evidence.md` 中的 `G1 / platform-foundation` 证据段

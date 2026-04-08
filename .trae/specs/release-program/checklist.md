@@ -16,10 +16,12 @@
 ### Program Structure Gate
 - [ ] 7 条主线的依赖关系已定稿
 - [ ] 阶段图、并行窗口与先决条件已定稿
+- [ ] `Program Conductor` 的状态对象和阻断权限已定稿
 
 ### Gate Policy Gate
 - [ ] 恢复实现前的门禁已定稿
 - [ ] `G1` 到 `G4` 的必需输入、阻断条件和输出已定稿
+- [ ] “是否开始开发”的正式 gate 决策文档已落库，且能直接回答当前 `GO/NO-GO`
 - [ ] GitHub required checks 已定义且与 gate 口径一致
 
 ### Risk & Readiness Gate
@@ -28,14 +30,18 @@
 - [ ] 上线前必须准备的 runbook、回滚和观测资产已定稿
 - [ ] `conflict-decision` Issue 流程和 A/B 裁决回写机制已定稿
 - [ ] 跨角色交接契约和无效交接阻断规则已定稿
+- [ ] `Story-01` 与 `Story-05` 的首批 rollout 证明责任已定稿
 
 ### Program Adoption Gate
 - [ ] 进入未来 release / hotfix 阶段的条件已定稿
 - [ ] 从 planning-first 进入实现阶段的切换条件已定稿
 - [ ] `master-program.md` 与本主线保持同步
+- [ ] `development-readiness-gate-decision.md` 与 `master-program.md`、主线 checklist 当前状态保持同步
+- [ ] `gate-readiness-evidence.md` 已汇总 `G1-G4` 正式输入、通过结论和引用源
 - [ ] `1 Issue + 1 Branch + 1 PR` 已作为并行开发默认单元
 - [ ] Issue/PR/CODEOWNERS 模板已落库并可直接使用
 - [ ] 7 角色手册与 prompt 模板已落库并可直接驱动对话
+- [ ] `Program Conductor` 手册、prompt 与 rollout 记录模板已落库并可直接驱动多子 Agent program
 
 ## Blocking Conditions
 

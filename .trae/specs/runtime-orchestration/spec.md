@@ -24,6 +24,7 @@
 - Planner / Execution Engine / Scheduler 的责任边界
 - 超时、取消、中断恢复、人工确认和重试的统一流程
 - 支撑 Story 验收套件与质量评测的运行时模板
+- `G1 Foundation Gate` 的正式输入证明
 
 ## Dependencies
 ### Upstream

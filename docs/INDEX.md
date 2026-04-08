@@ -29,6 +29,8 @@ updated: 2026-04-08
 |------|------|
 | [implementation-program.md](plans/implementation-program.md) | 统一实现总计划：主线、阶段、门禁、交付节奏 |
 | [master-program.md](plans/master-program.md) | 总控项目程序：依赖图、阶段图、并行窗口、门禁矩阵 |
+| [development-readiness-gate-decision.md](plans/development-readiness-gate-decision.md) | 是否开始开发的正式 gate 决策与 G1-G4 放行结论 |
+| [gate-readiness-evidence.md](plans/gate-readiness-evidence.md) | G1-G4 正式输入、证据源与通过结论汇总 |
 | [story-gate-matrix.md](plans/story-gate-matrix.md) | Story 验收如何穿透 7 条主线 gate 的总表 |
 
 ### `.trae/specs` 主线计划
@@ -67,6 +69,8 @@ updated: 2026-04-08
 | [naming-conventions.md](standard/naming-conventions.md) | 命名规范 |
 | [coding-standards.md](standard/coding-standards.md) | 编码标准 |
 | [role-handoff-contract.md](standard/role-handoff-contract.md) | 跨角色交接对象、字段与有效性规则 |
+| [program-conductor-state.md](standard/program-conductor-state.md) | 总控 Agent 必须维护的最小状态对象 |
+| [story-rollout-record.md](standard/story-rollout-record.md) | Story 样板 rollout 的记录模板 |
 | [story-template.md](standard/story-template.md) | Story 模板 |
 | [glossary.md](reference/glossary.md) | 术语表 |
 
@@ -74,6 +78,7 @@ updated: 2026-04-08
 
 | 文档 | 描述 |
 |------|------|
+| [program-conductor.md](roles/program-conductor.md) | 多子 Agent 总控调度角色手册 |
 | [product-owner.md](roles/product-owner.md) | 目标、成功标准与范围边界角色手册 |
 | [researcher.md](roles/researcher.md) | 事实、证据与备选方案角色手册 |
 | [architect.md](roles/architect.md) | 模块边界、链路与状态机角色手册 |
@@ -91,9 +96,12 @@ updated: 2026-04-08
 | [data-flow.md](specs/data-flow.md) | 平台级数据流契约 |
 | [agent-loop.md](specs/agent-loop.md) | Execution Engine 中 Agent Loop 的运行契约 |
 | [memory-system.md](specs/memory-system.md) | Memory & Retrieval 契约 |
+| [tool-governance.md](specs/tool-governance.md) | 工具最小契约、分类、接入边界与回放规则 |
 | [task-persistence.md](specs/task-persistence.md) | Task Service 与恢复契约 |
 | [multi-agent-orchestration.md](specs/multi-agent-orchestration.md) | Planner 与编排契约 |
 | [permission-system.md](specs/permission-system.md) | Policy & Guardrail 契约 |
+| [evaluation-governance.md](specs/evaluation-governance.md) | 六类评测、baseline/current、corpus 与 gate 映射 |
+| [cost-ops-governance.md](specs/cost-ops-governance.md) | 三档预算、降级顺序、容量指标与 SRE 要求 |
 | [heartbeat-engine.md](specs/heartbeat-engine.md) | Scheduler & Trigger 契约 |
 | [observability-system.md](specs/observability-system.md) | Observability & Evaluation 契约 |
 | [tech-stack.md](reference/tech-stack.md) | 技术栈总览 |

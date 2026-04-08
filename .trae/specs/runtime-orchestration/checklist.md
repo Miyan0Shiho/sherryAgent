@@ -30,6 +30,7 @@
 - [ ] 5 个 Story 的主链路映射与 Runtime 口径一致
 - [ ] Story 输出契约能回映到 Runtime 对象和状态机
 - [ ] runtime 完成证明已准备好供 `quality-evaluation` 与 `release-program` 消费
+- [ ] `gate-readiness-evidence.md` 已给出 `runtime-orchestration` 对 `G1` 的正式证据
 
 ## Blocking Conditions
 

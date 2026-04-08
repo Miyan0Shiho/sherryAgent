@@ -35,6 +35,15 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: branch_name
+    attributes:
+      label: branch_name
+      description: Must use the experimental prefix codex/multi-agent-test/<issue-id>-<topic>
+      placeholder: codex/multi-agent-test/1234-planner-bootstrap
+    validations:
+      required: true
+
   - type: textarea
     id: goal
     attributes:
@@ -135,6 +144,19 @@ body:
         - gate:G2
         - gate:G3
         - gate:G4
+    validations:
+      required: true
+
+  - type: dropdown
+    id: story_anchor
+    attributes:
+      label: story_anchor
+      description: Which rollout story anchors this work unit?
+      options:
+        - Story-01
+        - Story-03
+        - Story-05
+        - none
     validations:
       required: true
 

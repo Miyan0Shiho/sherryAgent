@@ -32,6 +32,7 @@
 - [ ] 5 个 Story 与其余 6 条主线均引用同一套基础对象
 - [ ] 下游主线未引入私有字段或私有状态机
 - [ ] foundation 完成证明已准备好供 `release-program` 消费
+- [ ] `gate-readiness-evidence.md` 已给出 `platform-foundation` 对 `G1` 的正式证据
 
 ## Blocking Conditions
 

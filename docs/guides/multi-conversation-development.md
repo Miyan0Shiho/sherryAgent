@@ -9,6 +9,9 @@ related:
   - "../plans/master-program.md"
   - "../plans/story-gate-matrix.md"
   - "../standard/role-handoff-contract.md"
+  - "../roles/program-conductor.md"
+  - "../standard/program-conductor-state.md"
+  - "../standard/story-rollout-record.md"
 ---
 
 # 多对话角色化开发指南
@@ -20,6 +23,12 @@ related:
 - 单一对话容易同时承担澄清、设计、执行、评审和治理，导致边界漂移。
 - 多个对话并行时，如果没有角色边界，很容易在同一 Work Unit 上重复决策或互相覆盖。
 - 角色化的目标不是增加流程，而是把“谁负责决定什么”写死，减少二次判断。
+
+## Program Conductor
+
+- `Program Conductor` 是唯一调度者，不是普通产物角色。
+- 它负责读取总控文档、拆分 Work Unit、分配 `role_owner`、校验 handoff、控制 `G1 -> G4` 节奏。
+- 它不能替代 7 个角色做设计、规格、实现或评审。
 
 ## 7 角色全景图
 
@@ -37,6 +46,7 @@ related:
 
 默认顺序：
 
+0. `Program Conductor`
 1. `Product Owner`
 2. `Researcher`
 3. `Architect`
@@ -54,16 +64,39 @@ related:
 ## Work Unit 绑定规则
 
 - 一个 Work Unit 采用 `1 Issue + 1 Branch + 1 PR`。
+- 一个 Work Unit 的分支必须遵守 `codex/multi-agent-test/<issue-id>-<topic>`。
 - 一个 Work Unit 在同一时刻只能有一个主责角色。
 - 非主责角色只能以 `research`, `review`, `support` 身份介入，不能改写主责角色已冻结的决定。
 - 当 Work Unit 涉及契约层改动时，`Spec Owner` 必须成为主责角色后才能进入实现。
+- `Program Conductor` 必须为每个 Work Unit 指定 `story_anchor` 和 `gate_target`。
+- `Program Conductor` 还必须记录 `branch_name`，并确保其与 Issue 和 PR 保持一致。
+
+## Phase Program
+
+- Phase A: `G1 Foundation Gate`
+  - 只推进 `platform-foundation` 与 `runtime-orchestration`
+  - 输出：统一对象、统一状态机、4 条主链路冻结
+- Phase B: `G2 Capability Gate`
+  - 推进 `memory-knowledge` 与 `tooling-integration`
+  - 输出：Evidence 生命周期、检索/压缩、工具协议、权限分类冻结
+- Phase C: `G3 Governance Gate`
+  - 推进 `quality-evaluation` 与 `cost-latency-ops`
+  - 输出：baseline、回归资产、预算/限流/降级、容量指标冻结
+- Phase D: `G4 Release Readiness Gate`
+  - 推进 `release-program` 与 Story 穿透验证
+  - 输出：门禁矩阵、风险台账、进入实现阶段条件
+
+切换规则：
+
+- `G1` 未冻结，禁止推进 `G2`
+- `G4` 未通过，禁止进入恢复实现讨论
 
 ## 交接时机
 
 - `Product Owner -> Researcher`：目标、成功标准、范围边界已经明确，但事实仍不足。
 - `Researcher -> Architect`：事实证据和备选方案已齐全，可以开始冻结结构决策。
 - `Architect -> Spec Owner`：边界、链路、状态机、依赖已定，不再要求实现者补设计。
-- `Spec Owner -> Implementer`：`.trae/specs` 与 `docs/*` 已同步，执行口径可直接消费。
+- `Spec Owner -> Implementer`：`.trae/specs` 与 `docs/*` 已同步，`branch_name` 与 Issue/PR 已建立，执行口径可直接消费。
 - `Implementer -> Reviewer`：产物、证据、验收目标已齐备，可以做缺陷审查。
 - `Reviewer -> Release Governor`：审查结论已出，剩余问题和风险分级清晰。
 
@@ -97,3 +130,5 @@ related:
 - `Architect` 与 `Spec Owner` 主要服务 7 条主线和契约冻结。
 - `Implementer` 与 `Reviewer` 主要服务执行与质量闭环。
 - `Release Governor` 直接使用 `story-gate-matrix` 和 `release-program` 做判断。
+- 首批 rollout 固定为 `Story-01` 与 `Story-05`。
+- 第二批补强从 `Story-03` 开始。

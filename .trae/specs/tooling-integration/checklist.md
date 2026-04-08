@@ -32,6 +32,7 @@
 - [ ] 高风险工具路径均受 Policy & Guardrail 约束
 - [ ] 5 个 Story 中的工具动作可落入统一分类
 - [ ] 该主线完成证明已准备好供 `quality-evaluation` 与 `release-program` 消费
+- [ ] `gate-readiness-evidence.md` 已给出 `tooling-integration` 对 `G2` 的正式证据
 
 ## Blocking Conditions
 

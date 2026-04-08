@@ -31,6 +31,7 @@
 - [ ] Story 与评测对记忆的要求可回映到该主线
 - [ ] 检索质量指标可直接进入 `quality-evaluation`
 - [ ] 该主线完成证明已准备好供 `G2 Capability Gate` 使用
+- [ ] `gate-readiness-evidence.md` 已给出 `memory-knowledge` 对 `G2` 的正式证据
 
 ## Blocking Conditions
 

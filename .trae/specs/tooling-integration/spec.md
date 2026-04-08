@@ -24,6 +24,7 @@
 - 本地 CLI、MCP、HTTP/API 三类工具的接入边界与隔离口径
 - 超时、重试、幂等、回放、模拟运行和错误分类规范
 - 供安全、评测、成本和发布主线复用的工具治理基线
+- `G2 Capability Gate` 的正式输入证明
 
 ## Dependencies
 ### Upstream

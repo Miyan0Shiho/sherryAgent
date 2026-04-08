@@ -71,3 +71,4 @@
 ### Deliverables
 - [ ] D4-1: Story-Loop 映射矩阵
 - [ ] D4-2: runtime gate 通过说明
+- [ ] D4-3: `docs/plans/gate-readiness-evidence.md` 中的 `G1 / runtime-orchestration` 证据段
